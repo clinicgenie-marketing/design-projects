@@ -1,1 +1,527 @@
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmVhABWmBAxGrLSb2VbHCdutoTBSxoOhzYWhFoFM1zrQZDOY0JFXVumehFnh42Gm3puQ/exec'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Team Dashboard</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f5f5f2;
+    --surface: #ffffff;
+    --surface2: #f1efe8;
+    --border: rgba(0,0,0,0.1);
+    --text: #1a1a18;
+    --text2: #5f5e5a;
+    --text3: #888780;
+    --complete: #1D9E75;
+    --inprogress: #378ADD;
+    --notstarted: #888780;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1a1a18;
+      --surface: #242422;
+      --surface2: #2c2c2a;
+      --border: rgba(255,255,255,0.1);
+      --text: #e8e6de;
+      --text2: #a8a69e;
+      --text3: #6a6862;
+    }
+  }
+
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; min-height: 100vh; }
+
+  /* LOGIN */
+  #login-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+  }
+  .login-logo {
+    width: 44px;
+    height: 44px;
+    background: #CECBF6;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 20px;
+  }
+  .login-title { font-size: 18px; font-weight: 500; margin-bottom: 4px; }
+  .login-sub { font-size: 13px; color: var(--text2); margin-bottom: 24px; }
+  .login-card input[type="password"] {
+    width: 100%;
+    padding: 10px 14px;
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface2);
+    color: var(--text);
+    font-size: 14px;
+    margin-bottom: 10px;
+    outline: none;
+  }
+  .login-card input[type="password"]:focus { border-color: #534AB7; }
+  .login-btn {
+    width: 100%;
+    padding: 10px;
+    background: #534AB7;
+    color: #fff;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .login-btn:hover { background: #3C3489; }
+  .login-error { font-size: 12px; color: #E24B4A; margin-top: 8px; display: none; }
+
+  /* DASHBOARD */
+  #dashboard { display: none; }
+
+  header {
+    background: var(--surface);
+    border-bottom: 0.5px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .header-logo {
+    width: 32px; height: 32px;
+    background: #CECBF6;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; flex-shrink: 0;
+  }
+  .header-title { font-size: 15px; font-weight: 500; flex: 1; }
+  .refresh-info { font-size: 11px; color: var(--text3); display: flex; align-items: center; gap: 6px; }
+  .refresh-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--complete); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.4} }
+  .last-updated { font-size: 11px; color: var(--text3); }
+
+  main { padding: 20px 24px; max-width: 1100px; margin: 0 auto; }
+
+  .summary-cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .sc {
+    background: var(--surface2);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+  }
+  .sc-val { font-size: 22px; font-weight: 500; }
+  .sc-lbl { font-size: 11px; color: var(--text2); margin-top: 2px; }
+  .sc-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+  .sc-bar-fill { height: 100%; border-radius: 2px; transition: width .6s; }
+
+  .tabs { display: flex; border-bottom: 0.5px solid var(--border); margin-bottom: 16px; gap: 0; }
+  .tab-btn {
+    padding: 8px 18px;
+    font-size: 13px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    color: var(--text2);
+  }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--text); font-weight: 500; }
+
+  .view { display: none; }
+  .view.active { display: block; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 11px; color: var(--text2); margin-bottom: 14px; }
+  .leg { display: flex; align-items: center; gap: 5px; }
+  .leg-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--text3);
+    padding: 12px 0 6px;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    font-size: 11px; font-weight: 500; color: var(--text2);
+    text-align: left; padding: 6px 10px;
+    border-bottom: 0.5px solid var(--border);
+    white-space: nowrap;
+  }
+  td { padding: 7px 10px; border-bottom: 0.5px solid var(--border); vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover td { background: var(--surface2); cursor: pointer; }
+
+  .task-name { font-weight: 500; color: var(--text); font-size: 13px; }
+  .client-pill {
+    font-size: 10px; padding: 2px 7px; border-radius: 9px;
+    display: inline-block; white-space: nowrap; margin-top: 2px;
+  }
+  .support-tag { font-size: 10px; color: var(--text3); margin-left: 4px; }
+
+  .bar-wrap { display: flex; align-items: center; gap: 6px; min-width: 90px; }
+  .bar-track { flex: 1; height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; }
+  .bar-pct { font-size: 10px; min-width: 26px; text-align: right; }
+  .status-lbl { font-size: 10px; margin-top: 2px; }
+
+  .badge { font-size: 10px; padding: 2px 8px; border-radius: 9px; white-space: nowrap; }
+
+  /* Load view */
+  .person-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .person-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500; flex-shrink: 0;
+  }
+  .person-name { font-size: 14px; font-weight: 500; }
+  .person-sub { font-size: 11px; color: var(--text2); }
+  .person-pct { font-size: 20px; font-weight: 500; color: var(--complete); }
+  .person-pct-lbl { font-size: 10px; color: var(--text2); }
+  .stacked-bar {
+    height: 8px; background: var(--surface2);
+    border-radius: 4px; overflow: hidden; margin-bottom: 8px; display: flex;
+  }
+  .stat-row { display: flex; gap: 14px; font-size: 11px; margin-bottom: 12px; }
+  .active-label {
+    font-size: 10px; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--text3); margin-bottom: 6px;
+  }
+  .task-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 9px; border-radius: 6px;
+    background: var(--surface2); margin-bottom: 5px; cursor: pointer;
+  }
+  .task-item:hover { opacity: .8; }
+  .task-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .loading {
+    text-align: center; padding: 48px 24px;
+    color: var(--text2); font-size: 13px;
+  }
+  .spinner {
+    width: 24px; height: 24px; border: 2px solid var(--border);
+    border-top-color: #534AB7; border-radius: 50%;
+    animation: spin .8s linear infinite; margin: 0 auto 12px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 600px) {
+    main { padding: 14px 14px; }
+    .summary-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    header { padding: 12px 14px; }
+    th:nth-child(1), td:nth-child(1),
+    th:nth-child(2), td:nth-child(2) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">🎨</div>
+    <div class="login-title">Design team</div>
+    <div class="login-sub">Enter password to continue</div>
+    <input type="password" id="pw-input" placeholder="Password" onkeydown="if(event.key==='Enter')login()">
+    <button class="login-btn" onclick="login()">Sign in</button>
+    <div class="login-error" id="pw-error">Incorrect password</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <header>
+    <div class="header-logo">🎨</div>
+    <div class="header-title">Design team tracker</div>
+    <div class="refresh-info">
+      <span class="refresh-dot"></span>
+      <span>Auto-refresh every 5 min</span>
+    </div>
+    <div class="last-updated" id="last-updated"></div>
+  </header>
+
+  <main>
+    <div class="summary-cards">
+      <div class="sc">
+        <div class="sc-val" id="sc-total">—</div>
+        <div class="sc-lbl">Total tasks</div>
+        <div class="sc-bar"><div class="sc-bar-fill" id="pb-total" style="background:#1D9E75"></div></div>
+      </div>
+      <div class="sc">
+        <div class="sc-val" id="sc-prog">—</div>
+        <div class="sc-lbl">In progress</div>
+        <div class="sc-bar"><div class="sc-bar-fill" id="pb-prog" style="background:#378ADD"></div></div>
+      </div>
+      <div class="sc">
+        <div class="sc-val" id="sc-done">—</div>
+        <div class="sc-lbl">Completed</div>
+        <div class="sc-bar"><div class="sc-bar-fill" id="pb-done" style="background:#1D9E75"></div></div>
+      </div>
+      <div class="sc">
+        <div class="sc-val" id="sc-ns">—</div>
+        <div class="sc-lbl">Not started</div>
+        <div class="sc-bar"><div class="sc-bar-fill" id="pb-ns" style="background:#888780"></div></div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('all',this)">All tasks</button>
+      <button class="tab-btn" onclick="switchTab('vash',this)">Vash</button>
+      <button class="tab-btn" onclick="switchTab('joy',this)">Joy</button>
+      <button class="tab-btn" onclick="switchTab('load',this)">Load overview</button>
+    </div>
+
+    <div class="legend">
+      <span class="leg"><span class="leg-dot" style="background:#1D9E75"></span>Complete</span>
+      <span class="leg"><span class="leg-dot" style="background:#378ADD"></span>In progress</span>
+      <span class="leg"><span class="leg-dot" style="background:#888780"></span>Not started</span>
+    </div>
+
+    <div class="view active" id="view-all"><div class="loading"><div class="spinner"></div>Loading...</div></div>
+    <div class="view" id="view-vash"></div>
+    <div class="view" id="view-joy"></div>
+    <div class="view" id="view-load"></div>
+  </main>
+</div>
+
+<script>
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmVhABWmBAxGrLSb2VbHCdutoTBSxoOhzYWhFoFM1zrQZDOY0JFXVumehFnh42Gm3puQ/exec';
+const SITE_PASSWORD = 'clinicgenie2026';
+const REFRESH_INTERVAL = 5 * 60 * 1000;
+
+const SC = { complete:'#1D9E75', inprogress:'#378ADD', notstarted:'#888780' };
+const CL = {
+  'TAC':'#534AB7','The Acne Clinic':'#534AB7',
+  'C4Y':'#D85A30','Cafe4You':'#D85A30',
+  'CG':'#185FA5','Clinic Genie':'#185FA5',
+  'THSC':'#0F6E56',
+  'Findclinic':'#854F0B',
+  'DCA':'#993556',
+  'Joyful Seeds':'#BA7517','Joyfulseeds':'#BA7517',
+  'PP':'#888780','Pilotpulse':'#888780',
+  'Time Key':'#3B6D11'
+};
+
+function statusKey(s) {
+  const k = (s||'').toLowerCase().replace(/\s/g,'');
+  if (k.includes('complete') && !k.includes('not')) return 'complete';
+  if (k.includes('progress')) return 'inprogress';
+  return 'notstarted';
+}
+function statusLabel(k) {
+  return k==='complete'?'Complete':k==='inprogress'?'In progress':'Not started';
+}
+function statusPct(k) { return k==='complete'?100:k==='inprogress'?50:0; }
+function clientColor(c) { return CL[c]||'#888780'; }
+
+let tasks = [];
+let refreshTimer = null;
+
+function login() {
+  const val = document.getElementById('pw-input').value;
+  if (val === SITE_PASSWORD) {
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    sessionStorage.setItem('auth', '1');
+    fetchData();
+    refreshTimer = setInterval(fetchData, REFRESH_INTERVAL);
+  } else {
+    document.getElementById('pw-error').style.display = 'block';
+  }
+}
+
+async function fetchData() {
+  try {
+    const url = SCRIPT_URL + '?pass=clinicgenie2026';
+    const res = await fetch(url);
+    const json = await res.json();
+    if (json.error) { console.error(json.error); return; }
+    tasks = json.data.filter(r => r['Task'] && r['Task'].toString().trim() !== '');
+    render();
+    const now = new Date();
+    document.getElementById('last-updated').textContent =
+      'Updated ' + now.toLocaleTimeString('en-SG', {hour:'2-digit',minute:'2-digit'});
+  } catch(e) {
+    console.error('Fetch failed', e);
+  }
+}
+
+function render() {
+  const total = tasks.length;
+  const done = tasks.filter(t => statusKey(t['Current Status'])==='complete').length;
+  const prog = tasks.filter(t => statusKey(t['Current Status'])==='inprogress').length;
+  const ns = tasks.filter(t => statusKey(t['Current Status'])==='notstarted').length;
+
+  document.getElementById('sc-total').textContent = total;
+  document.getElementById('sc-prog').textContent = prog;
+  document.getElementById('sc-done').textContent = done;
+  document.getElementById('sc-ns').textContent = ns;
+  document.getElementById('pb-total').style.width = Math.round((done/total)*100)+'%';
+  document.getElementById('pb-prog').style.width = Math.round((prog/total)*100)+'%';
+  document.getElementById('pb-done').style.width = Math.round((done/total)*100)+'%';
+  document.getElementById('pb-ns').style.width = Math.round((ns/total)*100)+'%';
+
+  buildTable('view-all', tasks, true);
+  buildTable('view-vash', tasks.filter(t => (t['Main Designer']||'').trim()==='Vash'), false);
+  buildTable('view-joy', tasks.filter(t => (t['Main Designer']||'').trim()==='Joy'), false);
+  buildLoad();
+}
+
+function buildTable(viewId, list, showDesigner) {
+  const groups = {
+    inprogress: list.filter(t => statusKey(t['Current Status'])==='inprogress'),
+    notstarted: list.filter(t => statusKey(t['Current Status'])==='notstarted'),
+    complete:   list.filter(t => statusKey(t['Current Status'])==='complete'),
+  };
+  const order = [['inprogress','In progress'],['notstarted','Not started'],['complete','Completed']];
+  let html = '';
+  order.forEach(([key, label]) => {
+    const rows = groups[key];
+    if (!rows.length) return;
+    html += `<div class="section-label">${label} (${rows.length})</div>`;
+    html += `<table><thead><tr>
+      <th style="width:75px">Given</th>
+      <th style="width:75px">Deadline</th>
+      <th>Task</th>
+      ${showDesigner ? '<th style="width:55px">Lead</th>' : ''}
+      <th style="width:120px">Progress</th>
+    </tr></thead><tbody>`;
+    rows.forEach(t => {
+      const sk = statusKey(t['Current Status']);
+      const p = statusPct(sk);
+      const cc = clientColor(t['Client']);
+      const support = (t['Support Designer']||'').trim();
+      const remarks = (t['Remarks']||'').trim();
+      html += `<tr title="${remarks}">
+        <td style="color:#888780;font-size:12px">${t['Date Given']||'—'}</td>
+        <td style="font-size:12px;color:${t['Deadline']?'inherit':'#888780'}">${t['Deadline']||'—'}</td>
+        <td>
+          <div class="task-name">${t['Task']}</div>
+          <span class="client-pill" style="background:${cc}18;color:${cc}">${t['Client']}</span>
+          ${support ? `<span class="support-tag">+ ${support}</span>` : ''}
+          ${remarks ? `<div style="font-size:10px;color:#888780;margin-top:2px">${remarks}</div>` : ''}
+        </td>
+        ${showDesigner ? `<td style="font-weight:500;font-size:12px">${t['Main Designer']||'—'}</td>` : ''}
+        <td>
+          <div class="bar-wrap">
+            <div class="bar-track">
+              <div class="bar-fill" style="width:${p}%;background:${SC[sk]}"></div>
+            </div>
+            <span class="bar-pct" style="color:${SC[sk]}">${p}%</span>
+          </div>
+          <div class="status-lbl" style="color:${SC[sk]}">${statusLabel(sk)}</div>
+        </td>
+      </tr>`;
+    });
+    html += `</tbody></table>`;
+  });
+  document.getElementById(viewId).innerHTML = html || '<p style="color:#888780;padding:16px 0;font-size:13px">No tasks.</p>';
+}
+
+function buildLoad() {
+  const people = [
+    { name:'Vash', initials:'VA', bg:'#CECBF6', fg:'#3C3489' },
+    { name:'Joy',  initials:'JO', bg:'#9FE1CB', fg:'#085041' },
+  ];
+  let html = '';
+  people.forEach(p => {
+    const mine = tasks.filter(t => (t['Main Designer']||'').trim()===p.name);
+    if (!mine.length) return;
+    const dn = mine.filter(t => statusKey(t['Current Status'])==='complete');
+    const ip = mine.filter(t => statusKey(t['Current Status'])==='inprogress');
+    const ns = mine.filter(t => statusKey(t['Current Status'])==='notstarted');
+    const completePct = Math.round((dn.length/mine.length)*100);
+    const ipPct = Math.round((ip.length/mine.length)*100);
+
+    html += `<div class="person-card">
+      <div class="person-header">
+        <div class="avatar" style="background:${p.bg};color:${p.fg}">${p.initials}</div>
+        <div style="flex:1">
+          <div class="person-name">${p.name}</div>
+          <div class="person-sub">${mine.length} tasks total</div>
+        </div>
+        <div style="text-align:right">
+          <div class="person-pct">${completePct}%</div>
+          <div class="person-pct-lbl">complete</div>
+        </div>
+      </div>
+      <div class="stacked-bar">
+        <div style="width:${completePct}%;background:#1D9E75;border-radius:4px 0 0 4px"></div>
+        <div style="width:${ipPct}%;background:#378ADD"></div>
+      </div>
+      <div class="stat-row">
+        <span style="color:#1D9E75">${dn.length} complete</span>
+        <span style="color:#378ADD">${ip.length} in progress</span>
+        <span style="color:#888780">${ns.length} not started</span>
+      </div>`;
+
+    const active = [...ip, ...ns];
+    if (active.length) {
+      html += `<div class="active-label">Active tasks</div>`;
+      active.forEach(t => {
+        const sk = statusKey(t['Current Status']);
+        const cc = clientColor(t['Client']);
+        html += `<div class="task-item">
+          <span class="task-dot" style="background:${SC[sk]}"></span>
+          <span style="flex:1;font-size:12px">${t['Task']}</span>
+          <span style="font-size:10px;padding:2px 7px;border-radius:8px;background:${cc}18;color:${cc};white-space:nowrap">${t['Client']}</span>
+          <div style="width:48px;height:5px;background:var(--bg);border-radius:3px;overflow:hidden;flex-shrink:0;margin-left:6px">
+            <div style="height:100%;width:${statusPct(sk)}%;background:${SC[sk]};border-radius:3px"></div>
+          </div>
+          <span style="font-size:10px;color:${SC[sk]};min-width:24px;text-align:right">${statusPct(sk)}%</span>
+        </div>`;
+      });
+    }
+    html += `</div>`;
+  });
+  document.getElementById('view-load').innerHTML = html;
+}
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+
+if (sessionStorage.getItem('auth')==='1') {
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+  fetchData();
+  refreshTimer = setInterval(fetchData, REFRESH_INTERVAL);
+}
+</script>
+</body>
+</html>
