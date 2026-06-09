@@ -19,135 +19,124 @@
       --border:rgba(255,255,255,0.1);--border2:rgba(255,255,255,0.2);
       --text:#e8e6de;--text2:#a8a69e;--text3:#6a6862;}
   }
-  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:14px;min-height:100vh}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:18px;min-height:100vh}
 
-  /* LOGIN */
   #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center}
   .login-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:40px 36px;width:100%;max-width:340px;text-align:center}
-  .login-logo{width:44px;height:44px;background:#CECBF6;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:20px}
-  .login-title{font-size:18px;font-weight:500;margin-bottom:4px}
-  .login-sub{font-size:13px;color:var(--text2);margin-bottom:24px}
-  .login-card input{width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface2);color:var(--text);font-size:14px;margin-bottom:10px;outline:none}
+  .login-logo{width:44px;height:44px;background:#CECBF6;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:25px}
+  .login-title{font-size:23px;font-weight:500;margin-bottom:4px}
+  .login-sub{font-size:16px;color:var(--text2);margin-bottom:24px}
+  .login-card input{width:100%;padding:10px 14px;border:0.5px solid var(--border);border-radius:var(--radius-sm);background:var(--surface2);color:var(--text);font-size:18px;margin-bottom:10px;outline:none}
   .login-card input:focus{border-color:#534AB7}
-  .login-btn{width:100%;padding:10px;background:#534AB7;color:#fff;border:none;border-radius:var(--radius-sm);font-size:14px;font-weight:500;cursor:pointer}
+  .login-btn{width:100%;padding:10px;background:#534AB7;color:#fff;border:none;border-radius:var(--radius-sm);font-size:18px;font-weight:500;cursor:pointer}
   .login-btn:hover{background:#3C3489}
-  .login-error{font-size:12px;color:#E24B4A;margin-top:8px;display:none}
+  .login-error{font-size:15px;color:#E24B4A;margin-top:8px;display:none}
 
-  /* DASHBOARD */
   #dashboard{display:none}
   header{background:var(--surface);border-bottom:0.5px solid var(--border);padding:14px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10}
-  .header-logo{width:32px;height:32px;background:#CECBF6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-  .header-title{font-size:15px;font-weight:500;flex:1}
-  .refresh-info{font-size:11px;color:var(--text3);display:flex;align-items:center;gap:6px}
+  .header-logo{width:32px;height:32px;background:#CECBF6;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+  .header-title{font-size:19px;font-weight:500;flex:1}
+  .refresh-info{font-size:14px;color:var(--text3);display:flex;align-items:center;gap:6px}
   .refresh-dot{width:6px;height:6px;border-radius:50%;background:var(--complete);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .last-updated{font-size:11px;color:var(--text3)}
+  .last-updated{font-size:14px;color:var(--text3)}
   main{padding:20px 24px;max-width:1100px;margin:0 auto}
 
-  /* TOP NAV — three views */
   .top-nav{display:flex;gap:4px;background:var(--surface2);padding:4px;border-radius:var(--radius);margin-bottom:18px;width:fit-content}
-  .top-nav-btn{padding:8px 18px;font-size:14px;background:transparent;border:none;border-radius:var(--radius-sm);cursor:pointer;color:var(--text2);font-weight:500}
+  .top-nav-btn{padding:8px 18px;font-size:16px;background:transparent;border:none;border-radius:var(--radius-sm);cursor:pointer;color:var(--text2);font-weight:500}
   .top-nav-btn.active{background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,0.05)}
 
-  /* FILTER CARDS (status) */
   .filter-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
   .fc{background:var(--surface2);border-radius:var(--radius-sm);padding:12px 14px;cursor:pointer;border:1.5px solid transparent;transition:all .15s}
   .fc:hover{border-color:var(--border)}
   .fc.active{border-color:var(--text);background:var(--surface)}
-  .fc-val{font-size:30px;font-weight:500}
+  .fc-val{font-size:28px;font-weight:500}
   .fc-lbl{font-size:14px;color:var(--text2);margin-top:2px}
   .fc-bar{height:4px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden}
   .fc-bar-fill{height:100%;border-radius:2px;transition:width .5s}
 
-  /* Designer filter row */
-  .designer-row{display:flex;gap:6px;margin-bottom:14px;align-items:center}
-  .dr-label{font-size:13px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
-  .dr-btn{padding:5px 12px;font-size:13px;background:transparent;border:0.5px solid var(--border);border-radius:14px;cursor:pointer;color:var(--text2)}
-  .dr-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+  .client-row{display:flex;gap:6px;margin-bottom:14px;align-items:center;flex-wrap:wrap}
+  .cr-label{font-size:14px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
+  .cr-btn{padding:5px 12px;font-size:15px;background:transparent;border:0.5px solid var(--border);border-radius:14px;cursor:pointer;color:var(--text2);display:inline-flex;align-items:center;gap:6px}
+  .cr-btn:hover{background:var(--surface2)}
+  .cr-btn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+  .cr-btn-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
 
-  /* LEGEND */
-  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--text2);margin-bottom:14px}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;font-size:14px;color:var(--text2);margin-bottom:14px}
   .leg{display:flex;align-items:center;gap:5px}
-  .leg-dot{width:8px;height:10px;border-radius:2px;flex-shrink:0}
+  .leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
 
-  /* TABLE */
   .section-label{font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);padding:14px 0 6px}
   table{width:100%;border-collapse:collapse;font-size:16px}
-  th{font-size:16px;font-weight:500;color:var(--text2);text-align:left;padding:6px 10px;border-bottom:0.5px solid var(--border);white-space:nowrap}
+  th{font-size:14px;font-weight:500;color:var(--text2);text-align:left;padding:6px 10px;border-bottom:0.5px solid var(--border);white-space:nowrap}
   td{padding:8px 10px;border-bottom:0.5px solid var(--border);vertical-align:middle}
   tbody tr:last-child td{border-bottom:none}
   tbody tr:hover td{background:var(--surface2)}
-  .task-name{font-weight:500;color:var(--text);font-size:13px}
+  .task-name{font-weight:500;color:var(--text);font-size:16px}
   .client-pill{font-size:13px;padding:2px 7px;border-radius:9px;display:inline-block;white-space:nowrap;margin-top:2px}
   .support-tag{font-size:13px;color:var(--text3);margin-left:4px}
-  .deadline-cell{font-size:16px;font-weight:500}
+  .deadline-cell{font-size:15px;font-weight:500}
   .deadline-overdue{color:#E24B4A}
   .deadline-soon{color:#BA7517}
   .deadline-none{color:var(--text3);font-weight:400}
   .bar-wrap{display:flex;align-items:center;gap:6px;min-width:90px;cursor:pointer}
   .bar-track{flex:1;height:5px;background:var(--surface2);border-radius:3px;overflow:hidden}
   .bar-fill{height:100%;border-radius:3px}
-  .bar-pct{font-size:10px;min-width:26px;text-align:right}
-  .status-lbl{font-size:10px;margin-top:2px}
+  .bar-pct{font-size:13px;min-width:26px;text-align:right}
+  .status-lbl{font-size:13px;margin-top:2px}
 
-  /* PRIORITY PILL */
-  .pri-pill{display:inline-flex;align-items:center;gap:4px;font-size:16px;padding:2px 7px;border-radius:9px;white-space:nowrap;font-weight:500}
+  .pri-pill{display:inline-flex;align-items:center;gap:4px;font-size:13px;padding:2px 7px;border-radius:9px;white-space:nowrap;font-weight:500}
   .pri-pill svg{flex-shrink:0}
 
-  /* LOAD VIEW */
   .person-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
   .person-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-  .avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;flex-shrink:0}
-  .person-name{font-size:20px;font-weight:500}
-  .person-sub{font-size:13px;color:var(--text2)}
-  .person-pct{font-size:20px;font-weight:500;color:var(--complete)}
+  .avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500;flex-shrink:0}
+  .person-name{font-size:18px;font-weight:500}
+  .person-sub{font-size:14px;color:var(--text2)}
+  .person-pct{font-size:25px;font-weight:500;color:var(--complete)}
   .person-pct-lbl{font-size:13px;color:var(--text2)}
-  .stacked-bar{height:16px;background:var(--surface2);border-radius:4px;overflow:hidden;margin-bottom:8px;display:flex;cursor:pointer}
-  .stat-row{display:flex;gap:16px;font-size:13px;margin-bottom:12px;flex-wrap:wrap}
+  .stacked-bar{height:8px;background:var(--surface2);border-radius:4px;overflow:hidden;margin-bottom:8px;display:flex;cursor:pointer}
+  .stat-row{display:flex;gap:14px;font-size:14px;margin-bottom:12px;flex-wrap:wrap}
   .stat-chip{cursor:pointer;padding:2px 4px;border-radius:4px}
   .client-group{margin-top:14px}
-  .client-group-header{display:flex;align-items:center;gap:6px;font-size:16px;font-weight:500;color:var(--text2);padding:6px 8px;background:var(--surface2);border-radius:var(--radius-sm);margin-bottom:6px}
+  .client-group-header{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:500;color:var(--text2);padding:6px 8px;background:var(--surface2);border-radius:var(--radius-sm);margin-bottom:6px}
   .cg-dot{width:8px;height:8px;border-radius:2px}
   .cg-count{margin-left:auto;color:var(--text3);font-weight:400}
-  .task-item{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:6px;background:var(--surface2);margin-bottom:4px;cursor:pointer;font-size:14px}
+  .task-item{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:6px;background:var(--surface2);margin-bottom:4px;cursor:pointer;font-size:15px}
   .task-item:hover{opacity:.85}
   .task-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 
-  /* TIMELINE */
   .timeline-toggle{display:flex;gap:4px;background:var(--surface2);padding:3px;border-radius:var(--radius-sm);margin-bottom:14px;width:fit-content}
-  .tt-btn{padding:6px 14px;font-size:16px;background:transparent;border:none;border-radius:4px;cursor:pointer;color:var(--text2);font-weight:500}
+  .tt-btn{padding:6px 14px;font-size:15px;background:transparent;border:none;border-radius:4px;cursor:pointer;color:var(--text2);font-weight:500}
   .tt-btn.active{background:var(--surface);color:var(--text)}
 
-  /* Gantt */
   .gantt-scroll{overflow-x:auto;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:0}
-  .gantt-table{border-collapse:collapse;min-width:100%;font-size:12px}
-  .gantt-table th{position:sticky;top:0;background:var(--surface);font-size:10px;font-weight:500;color:var(--text2);padding:8px 4px;border-bottom:0.5px solid var(--border);text-align:center;min-width:36px;white-space:nowrap}
+  .gantt-table{border-collapse:collapse;min-width:100%;font-size:15px}
+  .gantt-table th{position:sticky;top:0;background:var(--surface);font-size:13px;font-weight:500;color:var(--text2);padding:8px 4px;border-bottom:0.5px solid var(--border);text-align:center;min-width:36px;white-space:nowrap}
   .gantt-table th.task-col{text-align:left;padding:8px 12px;min-width:200px;width:200px;position:sticky;left:0;z-index:2;background:var(--surface)}
   .gantt-table td.task-cell{padding:6px 12px;border-bottom:0.5px solid var(--border);position:sticky;left:0;background:var(--surface);z-index:1;min-width:200px;width:200px}
   .gantt-table td.day-cell{position:relative;padding:0;border-bottom:0.5px solid var(--border);border-right:0.5px solid var(--border);height:38px;min-width:36px}
-  .gantt-bar{position:absolute;top:50%;transform:translateY(-50%);height:18px;border-radius:4px;display:flex;align-items:center;padding:0 6px;color:#fff;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;z-index:1}
+  .gantt-bar{position:absolute;top:50%;transform:translateY(-50%);height:18px;border-radius:4px;display:flex;align-items:center;padding:0 6px;color:#fff;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;z-index:1}
   .gantt-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:50%;border:2px solid var(--surface);cursor:pointer;z-index:1}
   .gantt-today{position:absolute;top:0;bottom:0;width:1.5px;background:#E24B4A;z-index:3;pointer-events:none}
   .gantt-week-sep{border-right:1px solid var(--border2)!important}
-  .gantt-month-row th{background:var(--surface2);font-size:11px;font-weight:500;color:var(--text)}
+  .gantt-month-row th{background:var(--surface2);font-size:14px;font-weight:500;color:var(--text)}
 
-  /* Calendar */
   .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:12px;margin-bottom:18px}
-  .cal-header{font-size:14px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;text-align:center;padding:4px 0}
+  .cal-header{font-size:13px;font-weight:500;color:var(--text2);text-transform:uppercase;letter-spacing:.05em;text-align:center;padding:4px 0}
   .cal-month-title{font-size:18px;font-weight:500;margin-bottom:8px;padding:0 4px}
   .cal-cell{aspect-ratio:1;background:var(--surface2);border-radius:var(--radius-sm);padding:6px;display:flex;flex-direction:column;cursor:pointer;border:1px solid transparent;position:relative;min-height:60px}
   .cal-cell:hover{border-color:var(--border)}
   .cal-cell.empty{background:transparent;cursor:default}
   .cal-cell.today{border-color:#E24B4A}
-  .cal-day{font-size:13px;font-weight:500;color:var(--text2)}
+  .cal-day{font-size:14px;font-weight:500;color:var(--text2)}
   .cal-cell.today .cal-day{color:#E24B4A}
   .cal-count{margin-top:auto;display:flex;align-items:flex-end;gap:2px;flex-wrap:wrap}
   .cal-dot{width:7px;height:7px;border-radius:50%}
   .cal-heat{position:absolute;top:0;left:0;right:0;bottom:0;border-radius:var(--radius-sm);opacity:0;pointer-events:none}
   .cal-cell.has-load .cal-heat{opacity:1}
 
-  /* Loading + drawer */
-  .loading{text-align:center;padding:48px 24px;color:var(--text2);font-size:15px}
+  .loading{text-align:center;padding:48px 24px;color:var(--text2);font-size:16px}
   .spinner{width:24px;height:24px;border:2px solid var(--border);border-top-color:#534AB7;border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 12px}
   @keyframes spin{to{transform:rotate(360deg)}}
   .view{display:none}
@@ -158,32 +147,31 @@
   .drawer{position:fixed;right:0;top:0;bottom:0;width:420px;max-width:95vw;background:var(--surface);border-left:0.5px solid var(--border);z-index:101;transform:translateX(100%);transition:transform .25s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
   .drawer.open{transform:translateX(0)}
   .drawer-header{padding:16px 20px;border-bottom:0.5px solid var(--border);display:flex;align-items:center;gap:10px;flex-shrink:0}
-  .drawer-title{font-size:18px;font-weight:500;flex:1}
-  .drawer-close{background:none;border:none;cursor:pointer;color:var(--text2);font-size:20px;line-height:1;padding:2px 4px;border-radius:4px}
+  .drawer-title{font-size:19px;font-weight:500;flex:1}
+  .drawer-close{background:none;border:none;cursor:pointer;color:var(--text2);font-size:25px;line-height:1;padding:2px 4px;border-radius:4px}
   .drawer-close:hover{background:var(--surface2)}
   .drawer-body{flex:1;overflow-y:auto;padding:16px 20px}
-  .drawer-count{font-size:16px;color:var(--text2);margin-bottom:14px}
+  .drawer-count{font-size:15px;color:var(--text2);margin-bottom:14px}
   .drawer-task{background:var(--surface2);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:8px;border-left:3px solid transparent}
   .drawer-task-name{font-weight:500;font-size:16px;margin-bottom:6px}
   .drawer-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-  .drawer-pill{font-size:12px;padding:2px 8px;border-radius:8px;white-space:nowrap}
-  .drawer-field{font-size:13px;color:var(--text2)}
-  .drawer-remarks{font-size:13px;color:var(--text3);margin-top:6px;font-style:italic}
-  .drawer-empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:13px}
+  .drawer-pill{font-size:13px;padding:2px 8px;border-radius:8px;white-space:nowrap}
+  .drawer-field{font-size:14px;color:var(--text2)}
+  .drawer-remarks{font-size:14px;color:var(--text3);margin-top:6px;font-style:italic}
+  .drawer-empty{text-align:center;padding:40px 20px;color:var(--text3);font-size:16px}
 
   @media (max-width:600px){
     main{padding:14px}
     .filter-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
     header{padding:12px 14px}
     .cal-cell{min-height:48px;padding:4px}
-    .cal-day{font-size:10px}
+    .cal-day{font-size:13px}
     .drawer{width:100vw}
   }
 </style>
 </head>
 <body>
 
-<!-- LOGIN -->
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">🎨</div>
@@ -195,7 +183,6 @@
   </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="dashboard">
   <header>
     <div class="header-logo">🎨</div>
@@ -235,11 +222,9 @@
         </div>
       </div>
 
-      <div class="designer-row">
-        <span class="dr-label">Designer</span>
-        <button class="dr-btn active" data-designer="all" onclick="setDesignerFilter('all')">All</button>
-        <button class="dr-btn" data-designer="Vash" onclick="setDesignerFilter('Vash')">Vash</button>
-        <button class="dr-btn" data-designer="Joy" onclick="setDesignerFilter('Joy')">Joy</button>
+      <div class="client-row" id="client-row">
+        <span class="cr-label">Client</span>
+        <button class="cr-btn active" data-client="all" onclick="setClientFilter('all')">All</button>
       </div>
 
       <div class="legend">
@@ -273,7 +258,7 @@
 </div>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmVhABWmBAxGrLSb2VbHCdutoTBSxoOhzYWhFoFM1zrQZDOY0JFXVumehFnh42Gm3puQ/exec';
+const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
 const SITE_PASSWORD = 'clinicgenie2026';
 const REFRESH_INTERVAL = 5 * 60 * 1000;
 
@@ -295,7 +280,7 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov
 
 let tasks = [];
 let activeStatusFilter = 'all';
-let activeDesignerFilter = 'all';
+let activeClientFilter = 'all';
 let activeTimelineMode = 'gantt';
 let refreshTimer = null;
 
@@ -387,10 +372,30 @@ async function fetchData(){
     const json=await res.json();
     if(json.error){console.error(json.error);return}
     tasks=json.data.filter(r=>r['Task']&&r['Task'].toString().trim()!=='');
+    buildClientFilter();
     renderAll();
     const now=new Date();
     document.getElementById('last-updated').textContent='Updated '+now.toLocaleTimeString('en-SG',{hour:'2-digit',minute:'2-digit'});
   }catch(e){console.error('Fetch failed',e)}
+}
+
+function buildClientFilter(){
+  const clients=[...new Set(tasks.map(t=>(t['Client']||'').trim()).filter(Boolean))];
+  const counts={};
+  clients.forEach(c=>{counts[c]=tasks.filter(t=>(t['Client']||'').trim()===c).length});
+  clients.sort((a,b)=>counts[b]-counts[a]);
+  const row=document.getElementById('client-row');
+  let html=`<span class="cr-label">Client</span>
+    <button class="cr-btn ${activeClientFilter==='all'?'active':''}" data-client="all" onclick="setClientFilter('all')">All <span style="color:var(--text3);font-size:13px">${tasks.length}</span></button>`;
+  clients.forEach(c=>{
+    const cc=clientColor(c);
+    const isActive=activeClientFilter===c;
+    html+=`<button class="cr-btn ${isActive?'active':''}" data-client="${c}" onclick="setClientFilter('${c.replace(/'/g,"\\'")}')">
+      <span class="cr-btn-dot" style="background:${cc}"></span>
+      ${c} <span style="color:${isActive?'rgba(255,255,255,0.6)':'var(--text3)'};font-size:13px">${counts[c]}</span>
+    </button>`;
+  });
+  row.innerHTML=html;
 }
 
 function renderAll(){
@@ -414,7 +419,7 @@ function renderAll(){
 function getFilteredTasks(){
   let list=tasks.slice();
   if(activeStatusFilter!=='all')list=list.filter(t=>statusKey(t['Current Status'])===activeStatusFilter);
-  if(activeDesignerFilter!=='all')list=list.filter(t=>(t['Main Designer']||'').trim()===activeDesignerFilter);
+  if(activeClientFilter!=='all')list=list.filter(t=>(t['Client']||'').trim()===activeClientFilter);
   list.sort((a,b)=>dateSortVal(a['Deadline'])-dateSortVal(b['Deadline']));
   return list;
 }
@@ -424,58 +429,97 @@ function setStatusFilter(f){
   document.querySelectorAll('.fc').forEach(c=>c.classList.toggle('active',c.dataset.filter===f));
   renderTasksList();
 }
-function setDesignerFilter(d){
-  activeDesignerFilter=d;
-  document.querySelectorAll('.dr-btn').forEach(b=>b.classList.toggle('active',b.dataset.designer===d));
+function setClientFilter(c){
+  activeClientFilter=c;
+  document.querySelectorAll('.cr-btn').forEach(b=>b.classList.toggle('active',b.dataset.client===c));
   renderTasksList();
 }
 
 function renderTasksList(){
   const list=getFilteredTasks();
-  const showDesigner=activeDesignerFilter==='all';
   if(!list.length){
-    document.getElementById('tasks-list').innerHTML='<p style="color:var(--text3);padding:24px 0;font-size:13px;text-align:center">No tasks match this filter.</p>';
+    document.getElementById('tasks-list').innerHTML='<p style="color:var(--text3);padding:24px 0;font-size:16px;text-align:center">No tasks match this filter.</p>';
     return;
   }
-  let html=`<table><thead><tr>
-    <th style="width:80px">Deadline</th>
-    <th>Task</th>
-    ${showDesigner?'<th style="width:60px">Lead</th>':''}
-    <th style="width:90px">Priority</th>
-    <th style="width:120px">Progress</th>
-  </tr></thead><tbody>`;
+
+  const groups={};
   list.forEach(t=>{
-    const sk=statusKey(t['Current Status']);
-    const p=statusPct(sk);
-    const cc=clientColor(t['Client']);
-    const support=(t['Support Designer']||'').trim();
-    const remarks=(t['Remarks']||'').trim();
-    const dl=t['Deadline'];
-    const dlFmt=fmtDate(dl);
-    let dlClass='deadline-cell';
-    if(!dlFmt)dlClass+=' deadline-none';
-    else if(isOverdue(dl,t['Current Status']))dlClass+=' deadline-overdue';
-    else if(isSoon(dl,t['Current Status']))dlClass+=' deadline-soon';
-    html+=`<tr>
-      <td><span class="${dlClass}">${dlFmt||'—'}</span></td>
-      <td>
-        <div class="task-name">${t['Task']}</div>
-        <span class="client-pill" style="background:${cc}18;color:${cc}">${t['Client']||'—'}</span>
-        ${support?`<span class="support-tag">+ ${support}</span>`:''}
-        ${remarks?`<div style="font-size:10px;color:var(--text3);margin-top:2px">${remarks}</div>`:''}
-      </td>
-      ${showDesigner?`<td style="font-weight:500;font-size:12px">${t['Main Designer']||'—'}</td>`:''}
-      <td>${priorityPill(t['Priority'])}</td>
-      <td>
-        <div class="bar-wrap" onclick="openDrawer('${sk}')">
-          <div class="bar-track"><div class="bar-fill" style="width:${p}%;background:${SC[sk]}"></div></div>
-          <span class="bar-pct" style="color:${SC[sk]}">${p}%</span>
-        </div>
-        <div class="status-lbl" style="color:${SC[sk]}">${statusLabel(sk)}</div>
-      </td>
-    </tr>`;
+    const d=parseDate(t['Deadline']);
+    if(!d){
+      if(!groups['_none'])groups['_none']={key:'_none',label:'No deadline',date:null,tasks:[]};
+      groups['_none'].tasks.push(t);
+    }else{
+      const key=d.getFullYear()+'-'+String(d.getMonth()).padStart(2,'0');
+      if(!groups[key])groups[key]={key,label:MONTHS[d.getMonth()]+' '+d.getFullYear(),date:new Date(d.getFullYear(),d.getMonth(),1),tasks:[]};
+      groups[key].tasks.push(t);
+    }
   });
-  html+=`</tbody></table>`;
+
+  const today=new Date();
+  const currentKey=today.getFullYear()+'-'+String(today.getMonth()).padStart(2,'0');
+  const currentMonthStart=new Date(today.getFullYear(),today.getMonth(),1);
+
+  const ordered=Object.values(groups).sort((a,b)=>{
+    if(a.key==='_none')return 1;
+    if(b.key==='_none')return -1;
+    if(a.key===currentKey)return -1;
+    if(b.key===currentKey)return 1;
+    const aFuture=a.date>=currentMonthStart;
+    const bFuture=b.date>=currentMonthStart;
+    if(aFuture&&!bFuture)return -1;
+    if(!aFuture&&bFuture)return 1;
+    if(aFuture)return a.date-b.date;
+    return b.date-a.date;
+  });
+
+  let html='';
+  ordered.forEach(g=>{
+    const isCurrent=g.key===currentKey;
+    const isPast=g.date&&g.date<currentMonthStart;
+    let labelHtml=g.label;
+    if(isCurrent)labelHtml+=` <span style="color:#534AB7;font-weight:600">· This month</span>`;
+    else if(isPast)labelHtml+=` <span style="color:#E24B4A;font-weight:600">· Past due</span>`;
+    html+=`<div class="section-label" style="${isCurrent?'border-top:2px solid #534AB7;padding-top:10px;':''}">${labelHtml} <span style="color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">(${g.tasks.length})</span></div>`;
+    html+=`<table><thead><tr>
+      <th style="width:80px">Deadline</th>
+      <th>Task</th>
+      <th style="width:60px">Lead</th>
+      <th style="width:90px">Priority</th>
+      <th style="width:120px">Progress</th>
+    </tr></thead><tbody>`;
+    g.tasks.forEach(t=>{
+      const sk=statusKey(t['Current Status']);
+      const p=statusPct(sk);
+      const cc=clientColor(t['Client']);
+      const support=(t['Support Designer']||'').trim();
+      const remarks=(t['Remarks']||'').trim();
+      const dl=t['Deadline'];
+      const dlFmt=fmtDate(dl);
+      let dlClass='deadline-cell';
+      if(!dlFmt)dlClass+=' deadline-none';
+      else if(isOverdue(dl,t['Current Status']))dlClass+=' deadline-overdue';
+      else if(isSoon(dl,t['Current Status']))dlClass+=' deadline-soon';
+      html+=`<tr>
+        <td><span class="${dlClass}">${dlFmt||'—'}</span></td>
+        <td>
+          <div class="task-name">${t['Task']}</div>
+          <span class="client-pill" style="background:${cc}18;color:${cc}">${t['Client']||'—'}</span>
+          ${support?`<span class="support-tag">+ ${support}</span>`:''}
+          ${remarks?`<div style="font-size:13px;color:var(--text3);margin-top:2px">${remarks}</div>`:''}
+        </td>
+        <td style="font-weight:500;font-size:15px">${t['Main Designer']||'—'}</td>
+        <td>${priorityPill(t['Priority'])}</td>
+        <td>
+          <div class="bar-wrap" onclick="openDrawer('${sk}')">
+            <div class="bar-track"><div class="bar-fill" style="width:${p}%;background:${SC[sk]}"></div></div>
+            <span class="bar-pct" style="color:${SC[sk]}">${p}%</span>
+          </div>
+          <div class="status-lbl" style="color:${SC[sk]}">${statusLabel(sk)}</div>
+        </td>
+      </tr>`;
+    });
+    html+=`</tbody></table>`;
+  });
   document.getElementById('tasks-list').innerHTML=html;
 }
 
@@ -543,7 +587,7 @@ function renderLoadView(){
             <span class="task-dot" style="background:${SC[sk]}"></span>
             <span style="flex:1">${t['Task']}</span>
             ${priorityPill(t['Priority'])}
-            ${dl?`<span style="font-size:10px;color:${isOverdue(t['Deadline'],t['Current Status'])?'#E24B4A':'var(--text3)'}">due ${dl}</span>`:'<span style="font-size:10px;color:var(--text3)">no deadline</span>'}
+            ${dl?`<span style="font-size:13px;color:${isOverdue(t['Deadline'],t['Current Status'])?'#E24B4A':'var(--text3)'}">due ${dl}</span>`:'<span style="font-size:13px;color:var(--text3)">no deadline</span>'}
           </div>`;
         });
         html+=`</div>`;
@@ -615,21 +659,14 @@ function renderGantt(){
     const barWidth=Math.max(1,(endOffset-startOffset+1))*dayWidth-4;
     const barLeft=startOffset*dayWidth+2;
     const isMarker=!end;
-    let cells='';
-    cur=new Date(minD);
-    for(let i=0;i<totalDays;i++){
-      const isMonday=cur.getDay()===1;
-      cells+=`<td class="day-cell ${isMonday?'gantt-week-sep':''}"></td>`;
-      cur.setDate(cur.getDate()+1);
-    }
     const todayOffset=Math.floor((today-minD)/(1000*60*60*24));
     const todayLeft=todayOffset>=0&&todayOffset<totalDays?`<div class="gantt-today" style="left:${todayOffset*dayWidth+dayWidth/2}px"></div>`:'';
     rows+=`<tr>
       <td class="task-cell">
-        <div style="font-weight:500;font-size:12px">${t['Task']}</div>
+        <div style="font-weight:500;font-size:15px">${t['Task']}</div>
         <div style="display:flex;gap:4px;align-items:center;margin-top:2px">
           <span class="client-pill" style="background:${cc}18;color:${cc};margin:0">${t['Client']||'—'}</span>
-          <span style="font-size:10px;color:var(--text3)">${(t['Main Designer']||'').trim()||'—'}</span>
+          <span style="font-size:13px;color:var(--text3)">${(t['Main Designer']||'').trim()||'—'}</span>
         </div>
       </td>
       <td colspan="${totalDays}" style="position:relative;padding:0;border-bottom:0.5px solid var(--border);height:46px">
@@ -657,7 +694,7 @@ function renderGantt(){
     </thead>
     <tbody>${rows}</tbody>
   </table></div>
-  <div style="margin-top:10px;font-size:11px;color:var(--text3)">Bar = Date Given → Deadline. Circle = single date (no deadline). Red line = today.</div>`;
+  <div style="margin-top:10px;font-size:14px;color:var(--text3)">Bar = Date Given → Deadline. Circle = single date (no deadline). Red line = today.</div>`;
   document.getElementById('timeline-content').innerHTML=html;
 }
 
@@ -683,7 +720,7 @@ function renderCalendar(){
       byDay[k].push(t);
     });
     const maxLoad=Math.max(1,...Object.values(byDay).map(arr=>arr.length));
-    html+=`<div class="cal-month-title">${MONTHS[monthStart.getMonth()]} ${monthStart.getFullYear()} <span style="font-weight:400;color:var(--text3);font-size:12px;margin-left:8px">${monthTasks.length} task${monthTasks.length!==1?'s':''} due</span></div>
+    html+=`<div class="cal-month-title">${MONTHS[monthStart.getMonth()]} ${monthStart.getFullYear()} <span style="font-weight:400;color:var(--text3);font-size:15px;margin-left:8px">${monthTasks.length} task${monthTasks.length!==1?'s':''} due</span></div>
     <div class="cal-grid">
       ${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="cal-header">${d}</div>`).join('')}`;
     for(let i=0;i<firstWeekday;i++)html+=`<div class="cal-cell empty"></div>`;
@@ -703,12 +740,12 @@ function renderCalendar(){
       html+=`<div class="cal-cell ${isToday?'today':''} ${load?'has-load':''}" onclick="openCalendarDay(${monthStart.getFullYear()},${monthStart.getMonth()},${day})">
         <div class="cal-heat" style="background:${heatColor}"></div>
         <div class="cal-day" style="position:relative;z-index:1">${day}</div>
-        <div class="cal-count" style="position:relative;z-index:1">${load?`<span style="font-size:11px;font-weight:500;margin-right:4px">${load}</span>${dots}`:''}</div>
+        <div class="cal-count" style="position:relative;z-index:1">${load?`<span style="font-size:14px;font-weight:500;margin-right:4px">${load}</span>${dots}`:''}</div>
       </div>`;
     }
     html+=`</div>`;
   });
-  html+=`<div style="margin-top:6px;font-size:11px;color:var(--text3)">Cells shaded red by workload. Click any day to see tasks due then.</div>`;
+  html+=`<div style="margin-top:6px;font-size:14px;color:var(--text3)">Cells shaded red by workload. Click any day to see tasks due then.</div>`;
   document.getElementById('timeline-content').innerHTML=html;
 }
 
