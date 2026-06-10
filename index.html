@@ -283,7 +283,7 @@
 </div>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx4JQWm9PdjDPbfCOp7VWc3QFQ3kNZliVvoPhMT0bFvBxWUK84juc1q5AlUxf0yoVxnFA/exec';
+const SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
 const SITE_PASSWORD = 'clinicgenie2026';
 const REFRESH_INTERVAL = 5 * 60 * 1000;
 
@@ -429,18 +429,34 @@ function login(){
   }
 }
 
-async function fetchData(){
-  try{
-    const res=await fetch(SCRIPT_URL+'?pass=clinicgenie2026');
-    const json=await res.json();
-    if(json.error){console.error(json.error);return}
-    tasks=json.data.filter(r=>r['Task']&&r['Task'].toString().trim()!=='');
-    updateTeamCounts();
-    buildClientFilter();
-    renderAll();
-    const now=new Date();
-    document.getElementById('last-updated').textContent='Updated '+now.toLocaleTimeString('en-SG',{hour:'2-digit',minute:'2-digit'});
-  }catch(e){console.error('Fetch failed',e)}
+function fetchData(){
+  // JSONP approach — bypasses CORS by injecting a <script> tag
+  const callbackName='cgCallback_'+Date.now();
+  window[callbackName]=function(json){
+    try{
+      if(json.error){console.error(json.error);}
+      else{
+        tasks=json.data.filter(r=>r['Task']&&r['Task'].toString().trim()!=='');
+        updateTeamCounts();
+        buildClientFilter();
+        renderAll();
+        const now=new Date();
+        document.getElementById('last-updated').textContent='Updated '+now.toLocaleTimeString('en-SG',{hour:'2-digit',minute:'2-digit'});
+      }
+    }catch(e){console.error('Render failed',e);}
+    delete window[callbackName];
+    const s=document.getElementById(callbackName);
+    if(s)s.remove();
+  };
+  const script=document.createElement('script');
+  script.id=callbackName;
+  script.src=SCRIPT_URL+'?pass=clinicgenie2026&callback='+callbackName;
+  script.onerror=function(){
+    console.error('Failed to load Apps Script. Check SCRIPT_URL and deployment.');
+    delete window[callbackName];
+    script.remove();
+  };
+  document.body.appendChild(script);
 }
 
 function getTeamScopedTasks(){
