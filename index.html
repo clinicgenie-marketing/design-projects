@@ -43,21 +43,21 @@
   .last-updated{font-size:13px;color:var(--text3)}
   main{padding:20px 24px;max-width:1200px;margin:0 auto}
 
-  /* TEAM NAV (top-level tabs) */
-  .team-nav{display:flex;gap:0;margin-bottom:18px;border-bottom:1px solid var(--border)}
-  .team-nav-btn{padding:12px 28px;font-size:17px;font-weight:500;background:transparent;border:none;cursor:pointer;color:var(--text2);border-bottom:3px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:center;gap:8px}
+  .team-nav{display:flex;gap:0;margin-bottom:18px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+  .team-nav-btn{padding:12px 24px;font-size:16px;font-weight:500;background:transparent;border:none;cursor:pointer;color:var(--text2);border-bottom:3px solid transparent;margin-bottom:-1px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
   .team-nav-btn:hover{color:var(--text)}
   .team-nav-btn.active{color:var(--text);border-bottom-color:var(--accent)}
   .team-nav-count{font-size:13px;color:var(--text3);font-weight:400;background:var(--surface2);padding:2px 8px;border-radius:10px}
   .team-nav-btn.active .team-nav-count{background:var(--accent);color:#fff}
 
-  /* TOP NAV (Tasks/Load/Timeline) */
   .top-nav{display:flex;gap:4px;background:var(--surface2);padding:4px;border-radius:var(--radius);margin-bottom:18px;width:fit-content}
   .top-nav-btn{padding:10px 22px;font-size:15px;background:transparent;border:none;border-radius:var(--radius-sm);cursor:pointer;color:var(--text2);font-weight:500}
   .top-nav-btn.active{background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,0.05)}
 
-  /* FILTER CARDS */
   .filter-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:16px}
+  .filter-cards-fc6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;margin-bottom:12px}
+  @media (max-width:900px){.filter-cards-fc6{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media (max-width:600px){.filter-cards-fc6{grid-template-columns:repeat(2,minmax(0,1fr))}}
   .fc{background:var(--surface2);border-radius:var(--radius-sm);padding:14px 16px;cursor:pointer;border:1.5px solid transparent;transition:all .15s}
   .fc:hover{border-color:var(--border)}
   .fc.active{border-color:var(--text);background:var(--surface)}
@@ -65,6 +65,10 @@
   .fc-lbl{font-size:13px;color:var(--text2);margin-top:2px}
   .fc-bar{height:5px;background:var(--border);border-radius:2px;margin-top:8px;overflow:hidden}
   .fc-bar-fill{height:100%;border-radius:2px;transition:width .5s}
+
+  .attention-line{font-size:14px;color:var(--text2);margin-bottom:14px;display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;background:var(--surface2);padding:10px 14px;border-radius:var(--radius-sm)}
+  .attention-chip{display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+  .attention-num{font-weight:600}
 
   .client-row{display:flex;gap:6px;margin-bottom:14px;align-items:center;flex-wrap:wrap}
   .cr-label{font-size:13px;color:var(--text3);font-weight:500;text-transform:uppercase;letter-spacing:.05em;margin-right:4px}
@@ -77,7 +81,6 @@
   .leg{display:flex;align-items:center;gap:6px}
   .leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 
-  /* TEAM SECTION DIVIDERS */
   .team-section-header{font-size:15px;font-weight:600;color:var(--text);padding:18px 0 10px;display:flex;align-items:center;gap:10px}
   .team-section-header::after{content:'';flex:1;height:0.5px;background:var(--border)}
   .team-badge{font-size:11px;padding:3px 10px;border-radius:10px;background:var(--accent);color:#fff;font-weight:500}
@@ -90,6 +93,7 @@
   tbody tr:hover td{background:var(--surface2)}
   .task-name{font-weight:500;color:var(--text);font-size:15px}
   .client-pill{font-size:12px;padding:2px 8px;border-radius:9px;display:inline-block;white-space:nowrap;margin-top:2px}
+  .pill-inline{font-size:12px;padding:3px 9px;border-radius:9px;font-weight:500;display:inline-block;white-space:nowrap}
   .support-tag{font-size:12px;color:var(--text3);margin-left:4px}
   .deadline-cell{font-size:14px;font-weight:500}
   .deadline-overdue{color:#E24B4A}
@@ -100,15 +104,16 @@
   .bar-fill{height:100%;border-radius:3px}
   .bar-pct{font-size:12px;min-width:30px;text-align:right}
   .status-lbl{font-size:12px;margin-top:2px}
+  .blocker-pill{font-size:11px;padding:3px 9px;border-radius:9px;background:#E24B4A22;color:#E24B4A;font-weight:500;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+  .blocker-none{color:var(--text3);font-size:14px}
 
   .pri-pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;padding:3px 8px;border-radius:10px;white-space:nowrap;font-weight:500}
   .pri-pill svg{flex-shrink:0}
 
-  /* LOAD VIEW */
   .person-card{background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
   .person-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
   .avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;flex-shrink:0}
-  .person-name{font-size:16px;font-weight:500}
+  .person-name{font-size:16px;font-weight:500;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .person-sub{font-size:13px;color:var(--text2)}
   .person-pct{font-size:22px;font-weight:500;color:var(--complete)}
   .person-pct-lbl{font-size:12px;color:var(--text2)}
@@ -122,11 +127,18 @@
   .task-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:6px;background:var(--surface2);margin-bottom:4px;cursor:pointer;font-size:14px}
   .task-item:hover{opacity:.85}
   .task-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .lo-badge{font-size:11px;font-weight:500;padding:2px 8px;border-radius:9px}
+  .lo-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .lo-bar-track{flex:1;height:10px;background:var(--surface2);border-radius:5px;overflow:hidden;position:relative}
+  .lo-bar-fill{height:100%;border-radius:5px}
+  .lo-bar-over{position:absolute;top:0;right:0;bottom:0;width:6px;background:repeating-linear-gradient(45deg,#E24B4A,#E24B4A 3px,#fff 3px,#fff 6px)}
+  .lo-bar-num{font-size:13px;font-weight:500;white-space:nowrap;min-width:50px;text-align:right}
 
-  /* TIMELINE */
   .timeline-toggle{display:flex;gap:4px;background:var(--surface2);padding:3px;border-radius:var(--radius-sm);margin-bottom:14px;width:fit-content}
   .tt-btn{padding:8px 16px;font-size:14px;background:transparent;border:none;border-radius:4px;cursor:pointer;color:var(--text2);font-weight:500}
   .tt-btn.active{background:var(--surface);color:var(--text)}
+  .showcompleted-row{display:flex;align-items:center;gap:8px;margin-bottom:14px;font-size:14px;color:var(--text2)}
+  .showcompleted-row input{cursor:pointer;width:16px;height:16px}
 
   .gantt-scroll{overflow-x:auto;background:var(--surface);border:0.5px solid var(--border);border-radius:var(--radius);padding:0}
   .gantt-table{border-collapse:collapse;min-width:100%;font-size:13px}
@@ -215,6 +227,7 @@
       <button class="team-nav-btn active" data-team="all" onclick="setTeamFilter('all')">All <span class="team-nav-count" id="tn-all">0</span></button>
       <button class="team-nav-btn" data-team="design" onclick="setTeamFilter('design')">Design <span class="team-nav-count" id="tn-design">0</span></button>
       <button class="team-nav-btn" data-team="content" onclick="setTeamFilter('content')">Content <span class="team-nav-count" id="tn-content">0</span></button>
+      <button class="team-nav-btn" data-team="findclinic" onclick="setTeamFilter('findclinic')">FindClinic.sg <span class="team-nav-count" id="tn-findclinic">0</span></button>
     </div>
 
     <div class="top-nav">
@@ -224,32 +237,70 @@
     </div>
 
     <div class="view active" id="view-tasks">
-      <div class="filter-cards">
-        <div class="fc active" data-filter="all" onclick="setStatusFilter('all')">
-          <div class="fc-val" id="sc-total">—</div>
-          <div class="fc-lbl">Total tasks</div>
-          <div class="fc-bar"><div class="fc-bar-fill" id="pb-total" style="background:#1D9E75"></div></div>
+
+      <div id="standard-task-controls">
+        <div class="filter-cards">
+          <div class="fc active" data-filter="all" onclick="setStatusFilter('all')">
+            <div class="fc-val" id="sc-total">-</div>
+            <div class="fc-lbl">Total tasks</div>
+            <div class="fc-bar"><div class="fc-bar-fill" id="pb-total" style="background:#1D9E75"></div></div>
+          </div>
+          <div class="fc" data-filter="inprogress" onclick="setStatusFilter('inprogress')">
+            <div class="fc-val" id="sc-prog">-</div>
+            <div class="fc-lbl">In progress</div>
+            <div class="fc-bar"><div class="fc-bar-fill" id="pb-prog" style="background:#378ADD"></div></div>
+          </div>
+          <div class="fc" data-filter="complete" onclick="setStatusFilter('complete')">
+            <div class="fc-val" id="sc-done">-</div>
+            <div class="fc-lbl">Completed</div>
+            <div class="fc-bar"><div class="fc-bar-fill" id="pb-done" style="background:#1D9E75"></div></div>
+          </div>
+          <div class="fc" data-filter="notstarted" onclick="setStatusFilter('notstarted')">
+            <div class="fc-val" id="sc-ns">-</div>
+            <div class="fc-lbl">Not started</div>
+            <div class="fc-bar"><div class="fc-bar-fill" id="pb-ns" style="background:#888780"></div></div>
+          </div>
         </div>
-        <div class="fc" data-filter="inprogress" onclick="setStatusFilter('inprogress')">
-          <div class="fc-val" id="sc-prog">—</div>
-          <div class="fc-lbl">In progress</div>
-          <div class="fc-bar"><div class="fc-bar-fill" id="pb-prog" style="background:#378ADD"></div></div>
-        </div>
-        <div class="fc" data-filter="complete" onclick="setStatusFilter('complete')">
-          <div class="fc-val" id="sc-done">—</div>
-          <div class="fc-lbl">Completed</div>
-          <div class="fc-bar"><div class="fc-bar-fill" id="pb-done" style="background:#1D9E75"></div></div>
-        </div>
-        <div class="fc" data-filter="notstarted" onclick="setStatusFilter('notstarted')">
-          <div class="fc-val" id="sc-ns">—</div>
-          <div class="fc-lbl">Not started</div>
-          <div class="fc-bar"><div class="fc-bar-fill" id="pb-ns" style="background:#888780"></div></div>
+
+        <div class="client-row" id="client-row">
+          <span class="cr-label">Client</span>
+          <button class="cr-btn active" data-client="all" onclick="setClientFilter('all')">All</button>
         </div>
       </div>
 
-      <div class="client-row" id="client-row">
-        <span class="cr-label">Client</span>
-        <button class="cr-btn active" data-client="all" onclick="setClientFilter('all')">All</button>
+      <div id="findclinic-task-controls" style="display:none">
+        <div class="attention-line" id="fc-attention"></div>
+        <div class="filter-cards-fc6">
+          <div class="fc active" data-fcfilter="all" onclick="setFcStatusFilter('all')">
+            <div class="fc-val" id="fc-total">-</div>
+            <div class="fc-lbl">Total tasks</div>
+          </div>
+          <div class="fc" data-fcfilter="inprogress" onclick="setFcStatusFilter('inprogress')">
+            <div class="fc-val" id="fc-prog">-</div>
+            <div class="fc-lbl">In progress</div>
+          </div>
+          <div class="fc" data-fcfilter="complete" onclick="setFcStatusFilter('complete')">
+            <div class="fc-val" id="fc-done">-</div>
+            <div class="fc-lbl">Completed</div>
+          </div>
+          <div class="fc" data-fcfilter="notstarted" onclick="setFcStatusFilter('notstarted')">
+            <div class="fc-val" id="fc-ns">-</div>
+            <div class="fc-lbl">Not started</div>
+          </div>
+          <div class="fc" data-fcfilter="overdue" onclick="setFcStatusFilter('overdue')">
+            <div class="fc-val" id="fc-overdue" style="color:#E24B4A">-</div>
+            <div class="fc-lbl">Overdue</div>
+          </div>
+          <div class="fc" data-fcfilter="blocked" onclick="setFcStatusFilter('blocked')">
+            <div class="fc-val" id="fc-blocked" style="color:#BA7517">-</div>
+            <div class="fc-lbl">Blocked / waiting</div>
+          </div>
+        </div>
+
+        <div class="client-row" id="worktype-row">
+          <span class="cr-label">Work type</span>
+          <button class="cr-btn active" data-worktype="all" onclick="setWorkTypeFilter('all')">All</button>
+        </div>
       </div>
 
       <div class="legend">
@@ -268,6 +319,16 @@
         <button class="tt-btn active" data-mode="gantt" onclick="setTimelineMode('gantt')">Gantt</button>
         <button class="tt-btn" data-mode="calendar" onclick="setTimelineMode('calendar')">Calendar</button>
       </div>
+
+      <div class="client-row" id="findclinic-timeline-worktype-row" style="display:none">
+        <span class="cr-label">Work type</span>
+        <button class="cr-btn active" data-worktype="all" onclick="setWorkTypeFilter('all')">All</button>
+      </div>
+      <div class="showcompleted-row" id="showcompleted-row" style="display:none">
+        <input type="checkbox" id="showcompleted-check" onchange="toggleShowCompleted(this.checked)">
+        <label for="showcompleted-check">Show completed</label>
+      </div>
+
       <div id="timeline-content"></div>
     </div>
   </main>
@@ -277,13 +338,13 @@
 <div class="drawer" id="drawer">
   <div class="drawer-header">
     <div class="drawer-title" id="drawer-title">Tasks</div>
-    <button class="drawer-close" onclick="closeDrawer()">&#x2715;</button>
+    <button class="drawer-close" onclick="closeDrawer()">X</button>
   </div>
   <div class="drawer-body" id="drawer-body"></div>
 </div>
 
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz5GJf6B2pIsGUeYI8RNnTaS9g7MMhdsbI1WCY73b9pVYy5Ifc9rowCHxw01yvWTUfC/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyeon09yoT5zJ9uV7X5-cTzIy7gkFx9vCAJWvpWi60w1SGgdMJPawEUQopwz61KHDg5KQ/exec';
 const SITE_PASSWORD = 'clinicgenie2026';
 const REFRESH_INTERVAL = 5 * 60 * 1000;
 
@@ -325,6 +386,21 @@ const TEAMS = {
   }
 };
 
+const HASH_PALETTE = [
+  {bg:'#CECBF6',fg:'#3C3489'},{bg:'#9FE1CB',fg:'#085041'},{bg:'#F5C4B3',fg:'#712B13'},
+  {bg:'#F4C0D1',fg:'#72243E'},{bg:'#B5D4F4',fg:'#0C447C'},{bg:'#C0DD97',fg:'#27500A'},
+  {bg:'#FAC775',fg:'#633806'},{bg:'#F7C1C1',fg:'#791F1F'}
+];
+const WT_COLORS = ['#534AB7','#0F6E56','#D85A30','#185FA5','#993556','#3B6D11','#854F0B','#378ADD'];
+function hashStr(s){let h=0;for(let i=0;i<s.length;i++){h=(h<<5)-h+s.charCodeAt(i);h|=0}return Math.abs(h)}
+function avatarFor(name){
+  const n=(name||'?').trim()||'?';
+  const p=HASH_PALETTE[hashStr(n)%HASH_PALETTE.length];
+  const initials=n.split(' ').filter(Boolean).map(w=>w[0]).join('').slice(0,2).toUpperCase()||'?';
+  return {initials,bg:p.bg,fg:p.fg};
+}
+function workTypeColor(wt){ if(!wt)return '#888780'; return WT_COLORS[hashStr(wt)%WT_COLORS.length]; }
+
 function getTeam(designerName){
   const n=(designerName||'').trim();
   if(!n)return null;
@@ -332,19 +408,15 @@ function getTeam(designerName){
   if(TEAMS.content.members.some(m=>m.name===n))return 'content';
   return null;
 }
-function getMemberMeta(name){
-  for(const teamKey of Object.keys(TEAMS)){
-    const m=TEAMS[teamKey].members.find(x=>x.name===name);
-    if(m)return m;
-  }
-  return null;
-}
 
 let tasks = [];
 let activeTeamFilter = 'all';
 let activeStatusFilter = 'all';
+let activeFcStatusFilter = 'all';
 let activeClientFilter = 'all';
+let activeWorkTypeFilter = 'all';
 let activeTimelineMode = 'gantt';
+let findclinicShowCompleted = false;
 let refreshTimer = null;
 
 function statusKey(s){
@@ -365,14 +437,11 @@ function priorityKey(p){
 }
 function priorityPill(p){
   const m=PRI[priorityKey(p)];
-  return `<span class="pri-pill" style="background:${m.bg};color:${m.color}">
-    <svg width="11" height="11" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="${m.icon}"/></svg>
-    ${m.label}
-  </span>`;
+  return '<span class="pri-pill" style="background:'+m.bg+';color:'+m.color+'"><svg width="11" height="11" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="'+m.icon+'"/></svg> '+m.label+'</span>';
 }
 
 function parseDate(val){
-  if(!val||val==='—')return null;
+  if(!val||val==='-')return null;
   if(val instanceof Date)return val;
   const s=val.toString().trim();
   if(!s)return null;
@@ -392,7 +461,7 @@ function parseDate(val){
 function fmtDate(val){
   const d=parseDate(val);
   if(!d)return '';
-  return `${d.getDate()} ${MONTHS[d.getMonth()]}`;
+  return d.getDate()+' '+MONTHS[d.getMonth()];
 }
 function dateSortVal(val){
   const d=parseDate(val);
@@ -415,6 +484,35 @@ function isSoon(dateStr,status){
   const diff=(d-today)/(1000*60*60*24);
   return diff>=0&&diff<=7;
 }
+function isDueThisWeek(dateStr,status){
+  const sk=statusKey(status);
+  if(sk==='complete')return false;
+  const d=parseDate(dateStr);
+  if(!d)return false;
+  const today=new Date();today.setHours(0,0,0,0);
+  const dow=(today.getDay()+6)%7;
+  const weekStart=new Date(today);weekStart.setDate(today.getDate()-dow);
+  const weekEnd=new Date(weekStart);weekEnd.setDate(weekStart.getDate()+6);
+  return d>=weekStart&&d<=weekEnd;
+}
+function isBlocked(t){
+  const s=(t['Current Status']||'').toLowerCase();
+  if(s.includes('block')||s.includes('wait'))return true;
+  const b=(t['Blocker']||'').toString().trim();
+  const sk=statusKey(t['Current Status']);
+  return !!b && sk!=='complete';
+}
+function getLead(t){ return (t['Lead']||t['Main Designer']||'').toString().trim(); }
+function getProject(t){ return (t['Project']||t['Client']||'').toString().trim(); }
+function getWorkType(t){ return (t['Work Type']||'').toString().trim(); }
+function getProgressPct(t){
+  const raw=(t['Progress']||'').toString().trim();
+  if(raw){
+    const num=parseFloat(raw.replace('%',''));
+    if(!isNaN(num))return Math.max(0,Math.min(100,Math.round(num)));
+  }
+  return statusPct(statusKey(t['Current Status']));
+}
 
 function login(){
   const val=document.getElementById('pw-input').value;
@@ -430,7 +528,6 @@ function login(){
 }
 
 function fetchData(){
-  // JSONP approach — bypasses CORS by injecting a <script> tag
   const callbackName='cgCallback_'+Date.now();
   window[callbackName]=function(json){
     try{
@@ -439,11 +536,12 @@ function fetchData(){
         tasks=json.data.filter(r=>r['Task']&&r['Task'].toString().trim()!=='');
         updateTeamCounts();
         buildClientFilter();
+        buildWorkTypeFilter();
         renderAll();
         const now=new Date();
         document.getElementById('last-updated').textContent='Updated '+now.toLocaleTimeString('en-SG',{hour:'2-digit',minute:'2-digit'});
       }
-    }catch(e){console.error('Render failed',e);}
+    }catch(e){console.error('Render failed',e)}
     delete window[callbackName];
     const s=document.getElementById(callbackName);
     if(s)s.remove();
@@ -461,6 +559,7 @@ function fetchData(){
 
 function getTeamScopedTasks(){
   if(activeTeamFilter==='all')return tasks;
+  if(activeTeamFilter==='findclinic')return tasks.filter(t=>t['Team']==='findclinic');
   return tasks.filter(t=>getTeam(t['Main Designer'])===activeTeamFilter);
 }
 
@@ -468,9 +567,11 @@ function updateTeamCounts(){
   const all=tasks.length;
   const design=tasks.filter(t=>getTeam(t['Main Designer'])==='design').length;
   const content=tasks.filter(t=>getTeam(t['Main Designer'])==='content').length;
+  const findclinic=tasks.filter(t=>t['Team']==='findclinic').length;
   document.getElementById('tn-all').textContent=all;
   document.getElementById('tn-design').textContent=design;
   document.getElementById('tn-content').textContent=content;
+  document.getElementById('tn-findclinic').textContent=findclinic;
 }
 
 function buildClientFilter(){
@@ -480,20 +581,42 @@ function buildClientFilter(){
   clients.forEach(c=>{counts[c]=scope.filter(t=>(t['Client']||'').trim()===c).length});
   clients.sort((a,b)=>counts[b]-counts[a]);
   const row=document.getElementById('client-row');
-  let html=`<span class="cr-label">Client</span>
-    <button class="cr-btn ${activeClientFilter==='all'?'active':''}" data-client="all" onclick="setClientFilter('all')">All <span style="color:var(--text3);font-size:12px">${scope.length}</span></button>`;
+  if(!row)return;
+  let html='<span class="cr-label">Client</span><button class="cr-btn '+(activeClientFilter==='all'?'active':'')+'" data-client="all" onclick="setClientFilter(\'all\')">All <span style="color:var(--text3);font-size:12px">'+scope.length+'</span></button>';
   clients.forEach(c=>{
     const cc=clientColor(c);
     const isActive=activeClientFilter===c;
-    html+=`<button class="cr-btn ${isActive?'active':''}" data-client="${c}" onclick="setClientFilter('${c.replace(/'/g,"\\'")}')">
-      <span class="cr-btn-dot" style="background:${cc}"></span>
-      ${c} <span style="color:${isActive?'rgba(255,255,255,0.6)':'var(--text3)'};font-size:12px">${counts[c]}</span>
-    </button>`;
+    html+='<button class="cr-btn '+(isActive?'active':'')+'" data-client="'+c+'" onclick="setClientFilter(\''+c.replace(/'/g,"\\'")+'\')"><span class="cr-btn-dot" style="background:'+cc+'"></span> '+c+' <span style="color:'+(isActive?'rgba(255,255,255,0.6)':'var(--text3)')+';font-size:12px">'+counts[c]+'</span></button>';
   });
   row.innerHTML=html;
 }
 
+function buildWorkTypeFilter(){
+  const scope=tasks.filter(t=>t['Team']==='findclinic');
+  const types=[...new Set(scope.map(t=>getWorkType(t)).filter(Boolean))];
+  const counts={};
+  types.forEach(wt=>{counts[wt]=scope.filter(t=>getWorkType(t)===wt).length});
+  types.sort((a,b)=>counts[b]-counts[a]);
+  let html='<span class="cr-label">Work type</span><button class="cr-btn '+(activeWorkTypeFilter==='all'?'active':'')+'" data-worktype="all" onclick="setWorkTypeFilter(\'all\')">All <span style="color:'+(activeWorkTypeFilter==='all'?'rgba(255,255,255,0.6)':'var(--text3)')+';font-size:12px">'+scope.length+'</span></button>';
+  types.forEach(wt=>{
+    const cc=workTypeColor(wt);
+    const isActive=activeWorkTypeFilter===wt;
+    html+='<button class="cr-btn '+(isActive?'active':'')+'" data-worktype="'+wt+'" onclick="setWorkTypeFilter(\''+wt.replace(/'/g,"\\'")+'\')"><span class="cr-btn-dot" style="background:'+cc+'"></span> '+wt+' <span style="color:'+(isActive?'rgba(255,255,255,0.6)':'var(--text3)')+';font-size:12px">'+counts[wt]+'</span></button>';
+  });
+  const row1=document.getElementById('worktype-row');
+  const row2=document.getElementById('findclinic-timeline-worktype-row');
+  if(row1)row1.innerHTML=html;
+  if(row2)row2.innerHTML=html;
+}
+
 function renderAll(){
+  if(activeTeamFilter==='findclinic'){
+    renderFindClinicSummary();
+    renderTasksList();
+    renderLoadView();
+    renderTimelineView();
+    return;
+  }
   const scope=getTeamScopedTasks();
   const total=scope.length||1;
   const done=scope.filter(t=>statusKey(t['Current Status'])==='complete').length;
@@ -512,6 +635,30 @@ function renderAll(){
   renderTimelineView();
 }
 
+function renderFindClinicSummary(){
+  const scope=tasks.filter(t=>t['Team']==='findclinic');
+  const total=scope.length;
+  const done=scope.filter(t=>statusKey(t['Current Status'])==='complete').length;
+  const prog=scope.filter(t=>statusKey(t['Current Status'])==='inprogress'&&!isBlocked(t)).length;
+  const ns=scope.filter(t=>statusKey(t['Current Status'])==='notstarted'&&!isBlocked(t)).length;
+  const overdue=scope.filter(t=>isOverdue(t['Deadline'],t['Current Status'])).length;
+  const blocked=scope.filter(t=>isBlocked(t)).length;
+  document.getElementById('fc-total').textContent=total;
+  document.getElementById('fc-prog').textContent=prog;
+  document.getElementById('fc-done').textContent=done;
+  document.getElementById('fc-ns').textContent=ns;
+  document.getElementById('fc-overdue').textContent=overdue;
+  document.getElementById('fc-blocked').textContent=blocked;
+
+  const highActive=scope.filter(t=>priorityKey(t['Priority'])==='high'&&statusKey(t['Current Status'])!=='complete').length;
+  const dueWeek=scope.filter(t=>isDueThisWeek(t['Deadline'],t['Current Status'])).length;
+  document.getElementById('fc-attention').innerHTML=
+    '<span class="attention-chip" style="color:#E24B4A"><span class="attention-num">'+overdue+'</span> overdue</span>'+
+    '<span class="attention-chip" style="color:#BA7517"><span class="attention-num">'+highActive+'</span> high priority active</span>'+
+    '<span class="attention-chip" style="color:#BA7517"><span class="attention-num">'+blocked+'</span> waiting / blocked</span>'+
+    '<span class="attention-chip" style="color:#378ADD"><span class="attention-num">'+dueWeek+'</span> due this week</span>';
+}
+
 function getFilteredTasks(){
   let list=getTeamScopedTasks().slice();
   if(activeStatusFilter!=='all')list=list.filter(t=>statusKey(t['Current Status'])===activeStatusFilter);
@@ -520,25 +667,65 @@ function getFilteredTasks(){
   return list;
 }
 
+function getFilteredFindClinicTasks(){
+  let list=tasks.filter(t=>t['Team']==='findclinic');
+  if(activeWorkTypeFilter!=='all')list=list.filter(t=>getWorkType(t)===activeWorkTypeFilter);
+  if(activeFcStatusFilter==='overdue')list=list.filter(t=>isOverdue(t['Deadline'],t['Current Status']));
+  else if(activeFcStatusFilter==='blocked')list=list.filter(t=>isBlocked(t));
+  else if(activeFcStatusFilter!=='all')list=list.filter(t=>statusKey(t['Current Status'])===activeFcStatusFilter&&!isBlocked(t));
+  list.sort((a,b)=>dateSortVal(a['Deadline'])-dateSortVal(b['Deadline']));
+  return list;
+}
+
 function setTeamFilter(t){
   activeTeamFilter=t;
   activeClientFilter='all';
+  activeWorkTypeFilter='all';
+  activeStatusFilter='all';
+  activeFcStatusFilter='all';
   document.querySelectorAll('.team-nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.team===t));
+  document.querySelectorAll('.fc[data-filter]').forEach(c=>c.classList.toggle('active',c.dataset.filter==='all'));
+  document.querySelectorAll('.fc[data-fcfilter]').forEach(c=>c.classList.toggle('active',c.dataset.fcfilter==='all'));
+
+  const isFc=t==='findclinic';
+  document.getElementById('standard-task-controls').style.display=isFc?'none':'';
+  document.getElementById('findclinic-task-controls').style.display=isFc?'':'none';
+  document.getElementById('findclinic-timeline-worktype-row').style.display=isFc?'':'none';
+  document.getElementById('showcompleted-row').style.display=(isFc&&activeTimelineMode==='gantt')?'':'none';
+
   buildClientFilter();
+  buildWorkTypeFilter();
   renderAll();
 }
 function setStatusFilter(f){
   activeStatusFilter=f;
-  document.querySelectorAll('.fc').forEach(c=>c.classList.toggle('active',c.dataset.filter===f));
+  document.querySelectorAll('.fc[data-filter]').forEach(c=>c.classList.toggle('active',c.dataset.filter===f));
+  renderTasksList();
+}
+function setFcStatusFilter(f){
+  activeFcStatusFilter=f;
+  document.querySelectorAll('.fc[data-fcfilter]').forEach(c=>c.classList.toggle('active',c.dataset.fcfilter===f));
   renderTasksList();
 }
 function setClientFilter(c){
   activeClientFilter=c;
-  document.querySelectorAll('.cr-btn').forEach(b=>b.classList.toggle('active',b.dataset.client===c));
+  document.querySelectorAll('.cr-btn[data-client]').forEach(b=>b.classList.toggle('active',b.dataset.client===c));
   renderTasksList();
+}
+function setWorkTypeFilter(wt){
+  activeWorkTypeFilter=wt;
+  document.querySelectorAll('.cr-btn[data-worktype]').forEach(b=>b.classList.toggle('active',b.dataset.worktype===wt));
+  renderTasksList();
+  renderTimelineView();
+}
+function toggleShowCompleted(checked){
+  findclinicShowCompleted=checked;
+  renderTimelineView();
 }
 
 function renderTasksList(){
+  if(activeTeamFilter==='findclinic'){ renderFindClinicTasksList(); return; }
+
   const list=getFilteredTasks();
   if(!list.length){
     document.getElementById('tasks-list').innerHTML='<p style="color:var(--text3);padding:24px 0;font-size:15px;text-align:center">No tasks match this filter.</p>';
@@ -581,17 +768,10 @@ function renderTasksList(){
     const isCurrent=g.key===currentKey;
     const isPast=g.date&&g.date<currentMonthStart;
     let labelHtml=g.label;
-    if(isCurrent)labelHtml+=` <span style="color:var(--accent);font-weight:600">· This month</span>`;
-    else if(isPast)labelHtml+=` <span style="color:#E24B4A;font-weight:600">· Past due</span>`;
-    html+=`<div class="section-label" style="${isCurrent?'border-top:2px solid var(--accent);padding-top:10px;':''}">${labelHtml} <span style="color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">(${g.tasks.length})</span></div>`;
-    html+=`<table><thead><tr>
-      <th style="width:90px">Deadline</th>
-      <th>Task</th>
-      <th style="width:80px">Lead</th>
-      ${showTeam?'<th style="width:80px">Team</th>':''}
-      <th style="width:100px">Priority</th>
-      <th style="width:130px">Progress</th>
-    </tr></thead><tbody>`;
+    if(isCurrent)labelHtml+=' <span style="color:var(--accent);font-weight:600">- This month</span>';
+    else if(isPast)labelHtml+=' <span style="color:#E24B4A;font-weight:600">- Past due</span>';
+    html+='<div class="section-label" style="'+(isCurrent?'border-top:2px solid var(--accent);padding-top:10px;':'')+'">'+labelHtml+' <span style="color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">('+g.tasks.length+')</span></div>';
+    html+='<table><thead><tr><th style="width:90px">Deadline</th><th>Task</th><th style="width:80px">Lead</th>'+(showTeam?'<th style="width:100px">Team</th>':'')+'<th style="width:100px">Priority</th><th style="width:130px">Progress</th></tr></thead><tbody>';
     g.tasks.forEach(t=>{
       const sk=statusKey(t['Current Status']);
       const p=statusPct(sk);
@@ -600,47 +780,99 @@ function renderTasksList(){
       const remarks=(t['Remarks']||'').trim();
       const dl=t['Deadline'];
       const dlFmt=fmtDate(dl);
-      const teamKey=getTeam(t['Main Designer']);
-      const teamMeta=teamKey?TEAMS[teamKey]:null;
+      const teamKey=t['Team']||getTeam(t['Main Designer']);
+      let teamLabel='',teamColor='';
+      if(teamKey==='design'){teamLabel='Design';teamColor=TEAMS.design.color}
+      else if(teamKey==='content'){teamLabel='Content';teamColor=TEAMS.content.color}
+      else if(teamKey==='findclinic'){teamLabel='FindClinic.sg';teamColor='#854F0B'}
       let dlClass='deadline-cell';
       if(!dlFmt)dlClass+=' deadline-none';
       else if(isOverdue(dl,t['Current Status']))dlClass+=' deadline-overdue';
       else if(isSoon(dl,t['Current Status']))dlClass+=' deadline-soon';
-      html+=`<tr>
-        <td><span class="${dlClass}">${dlFmt||'—'}</span></td>
-        <td>
-          <div class="task-name">${t['Task']}</div>
-          <span class="client-pill" style="background:${cc}18;color:${cc}">${t['Client']||'—'}</span>
-          ${support?`<span class="support-tag">+ ${support}</span>`:''}
-          ${remarks?`<div style="font-size:12px;color:var(--text3);margin-top:2px">${remarks}</div>`:''}
-        </td>
-        <td style="font-weight:500;font-size:14px">${t['Main Designer']||'—'}</td>
-        ${showTeam?`<td>${teamMeta?`<span class="client-pill" style="background:${teamMeta.color}18;color:${teamMeta.color};margin:0">${teamMeta.name}</span>`:'<span style="color:var(--text3);font-size:13px">—</span>'}</td>`:''}
-        <td>${priorityPill(t['Priority'])}</td>
-        <td>
-          <div class="bar-wrap" onclick="openDrawer('${sk}')">
-            <div class="bar-track"><div class="bar-fill" style="width:${p}%;background:${SC[sk]}"></div></div>
-            <span class="bar-pct" style="color:${SC[sk]}">${p}%</span>
-          </div>
-          <div class="status-lbl" style="color:${SC[sk]}">${statusLabel(sk)}</div>
-        </td>
-      </tr>`;
+      html+='<tr><td><span class="'+dlClass+'">'+(dlFmt||'-')+'</span></td><td><div class="task-name">'+t['Task']+'</div><span class="client-pill" style="background:'+cc+'18;color:'+cc+'">'+(t['Client']||'-')+'</span>'+(support?'<span class="support-tag">+ '+support+'</span>':'')+(remarks?'<div style="font-size:12px;color:var(--text3);margin-top:2px">'+remarks+'</div>':'')+'</td><td style="font-weight:500;font-size:14px">'+(t['Main Designer']||'-')+'</td>'+(showTeam?'<td>'+(teamLabel?'<span class="client-pill" style="background:'+teamColor+'18;color:'+teamColor+';margin:0">'+teamLabel+'</span>':'<span style="color:var(--text3);font-size:13px">-</span>')+'</td>':'')+'<td>'+priorityPill(t['Priority'])+'</td><td><div class="bar-wrap" onclick="openDrawer(\''+sk+'\')"><div class="bar-track"><div class="bar-fill" style="width:'+p+'%;background:'+SC[sk]+'"></div></div><span class="bar-pct" style="color:'+SC[sk]+'">'+p+'%</span></div><div class="status-lbl" style="color:'+SC[sk]+'">'+statusLabel(sk)+'</div></td></tr>';
     });
-    html+=`</tbody></table>`;
+    html+='</tbody></table>';
+  });
+  document.getElementById('tasks-list').innerHTML=html;
+}
+
+function renderFindClinicTasksList(){
+  const list=getFilteredFindClinicTasks();
+  if(!list.length){
+    document.getElementById('tasks-list').innerHTML='<p style="color:var(--text3);padding:24px 0;font-size:15px;text-align:center">No tasks match this filter.</p>';
+    return;
+  }
+
+  const groups={};
+  list.forEach(t=>{
+    const d=parseDate(t['Deadline']);
+    if(!d){
+      if(!groups['_none'])groups['_none']={key:'_none',label:'No deadline',date:null,tasks:[]};
+      groups['_none'].tasks.push(t);
+    }else{
+      const key=d.getFullYear()+'-'+String(d.getMonth()).padStart(2,'0');
+      if(!groups[key])groups[key]={key,label:MONTHS[d.getMonth()]+' '+d.getFullYear(),date:new Date(d.getFullYear(),d.getMonth(),1),tasks:[]};
+      groups[key].tasks.push(t);
+    }
+  });
+  const today=new Date();
+  const currentKey=today.getFullYear()+'-'+String(today.getMonth()).padStart(2,'0');
+  const currentMonthStart=new Date(today.getFullYear(),today.getMonth(),1);
+  const ordered=Object.values(groups).sort((a,b)=>{
+    if(a.key==='_none')return 1;
+    if(b.key==='_none')return -1;
+    if(a.key===currentKey)return -1;
+    if(b.key===currentKey)return 1;
+    const aFuture=a.date>=currentMonthStart;
+    const bFuture=b.date>=currentMonthStart;
+    if(aFuture&&!bFuture)return -1;
+    if(!aFuture&&bFuture)return 1;
+    if(aFuture)return a.date-b.date;
+    return b.date-a.date;
+  });
+
+  let html='';
+  ordered.forEach(g=>{
+    const isCurrent=g.key===currentKey;
+    const isPast=g.date&&g.date<currentMonthStart;
+    let labelHtml=g.label;
+    if(isCurrent)labelHtml+=' <span style="color:var(--accent);font-weight:600">- This month</span>';
+    else if(isPast)labelHtml+=' <span style="color:#E24B4A;font-weight:600">- Past due</span>';
+    html+='<div class="section-label" style="'+(isCurrent?'border-top:2px solid var(--accent);padding-top:10px;':'')+'">'+labelHtml+' <span style="color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">('+g.tasks.length+')</span></div>';
+    html+='<table><thead><tr><th style="width:90px">Deadline</th><th>Task</th><th style="width:110px">Work type</th><th style="width:90px">Lead</th><th style="width:100px">Priority</th><th style="width:100px">Status</th><th style="width:120px">Progress</th><th style="width:130px">Blocker</th></tr></thead><tbody>';
+    g.tasks.forEach(t=>{
+      const sk=statusKey(t['Current Status']);
+      const p=getProgressPct(t);
+      const proj=getProject(t);
+      const wt=getWorkType(t);
+      const wtColor=workTypeColor(wt);
+      const lead=getLead(t)||'-';
+      const dl=t['Deadline'];
+      const dlFmt=fmtDate(dl);
+      const overdue=isOverdue(dl,t['Current Status']);
+      const blocked=isBlocked(t);
+      const blockerText=(t['Blocker']||'').toString().trim();
+      let dlClass='deadline-cell';
+      if(!dlFmt)dlClass+=' deadline-none';
+      else if(overdue)dlClass+=' deadline-overdue';
+      else if(isSoon(dl,t['Current Status']))dlClass+=' deadline-soon';
+      html+='<tr><td><span class="'+dlClass+'">'+(dlFmt||'-')+(overdue?' !':'')+'</span></td><td><div class="task-name">'+t['Task']+'</div>'+(proj?'<span class="client-pill" style="background:'+clientColor(proj)+'18;color:'+clientColor(proj)+'">'+proj+'</span>':'')+'</td><td>'+(wt?'<span class="pill-inline" style="background:'+wtColor+'18;color:'+wtColor+'">'+wt+'</span>':'<span style="color:var(--text3);font-size:13px">-</span>')+'</td><td style="font-weight:500;font-size:14px">'+lead+'</td><td>'+priorityPill(t['Priority'])+'</td><td><span class="pill-inline" style="background:'+SC[sk]+'18;color:'+SC[sk]+'">'+statusLabel(sk)+'</span>'+(blocked?'<div style="margin-top:4px"><span class="pill-inline" style="background:#BA751722;color:#BA7517">Blocked</span></div>':'')+'</td><td><div class="bar-wrap" onclick="openDrawer(\''+sk+'\')"><div class="bar-track"><div class="bar-fill" style="width:'+p+'%;background:'+SC[sk]+'"></div></div><span class="bar-pct" style="color:'+SC[sk]+'">'+p+'%</span></div></td><td>'+(blockerText?'<span class="blocker-pill" title="'+blockerText+'">'+(blockerText.length>24?blockerText.slice(0,24)+'...':blockerText)+'</span>':'<span class="blocker-none">-</span>')+'</td></tr>';
+    });
+    html+='</tbody></table>';
   });
   document.getElementById('tasks-list').innerHTML=html;
 }
 
 function renderLoadView(){
+  if(activeTeamFilter==='findclinic'){ renderFindClinicLoadView(); return; }
+
   let html='';
-  const teamsToShow = activeTeamFilter==='all'
-    ? ['design','content']
-    : [activeTeamFilter];
+  const teamsToShow = activeTeamFilter==='all' ? ['design','content'] : [activeTeamFilter];
   teamsToShow.forEach(teamKey=>{
     const team=TEAMS[teamKey];
     const teamTasks=tasks.filter(t=>getTeam(t['Main Designer'])===teamKey);
     if(activeTeamFilter==='all'){
-      html+=`<div class="team-section-header"><span class="team-badge" style="background:${team.color}">${team.name}</span><span style="font-size:13px;color:var(--text3);font-weight:400">${teamTasks.length} task${teamTasks.length!==1?'s':''}</span></div>`;
+      html+='<div class="team-section-header"><span class="team-badge" style="background:'+team.color+'">'+team.name+'</span><span style="font-size:13px;color:var(--text3);font-weight:400">'+teamTasks.length+' task'+(teamTasks.length!==1?'s':'')+'</span></div>';
     }
     let renderedAny=false;
     team.members.forEach(p=>{
@@ -650,30 +882,23 @@ function renderLoadView(){
       const dn=mine.filter(t=>statusKey(t['Current Status'])==='complete');
       const ip=mine.filter(t=>statusKey(t['Current Status'])==='inprogress');
       const ns=mine.filter(t=>statusKey(t['Current Status'])==='notstarted');
-      const completePct=Math.round((dn.length/mine.length)*100);
-      const ipPct=Math.round((ip.length/mine.length)*100);
-      html+=`<div class="person-card">
-        <div class="person-header">
-          <div class="avatar" style="background:${p.bg};color:${p.fg}">${p.initials}</div>
-          <div style="flex:1">
-            <div class="person-name">${p.name}</div>
-            <div class="person-sub">${mine.length} tasks total</div>
-          </div>
-          <div style="text-align:right">
-            <div class="person-pct">${completePct}%</div>
-            <div class="person-pct-lbl">complete</div>
-          </div>
-        </div>
-        <div class="stacked-bar" onclick="openDrawer('inprogress','${p.name}')">
-          <div style="width:${completePct}%;background:#1D9E75;border-radius:4px 0 0 4px"></div>
-          <div style="width:${ipPct}%;background:#378ADD"></div>
-        </div>
-        <div class="stat-row">
-          <span class="stat-chip" style="color:#1D9E75" onclick="openDrawer('complete','${p.name}')">${dn.length} complete</span>
-          <span class="stat-chip" style="color:#378ADD" onclick="openDrawer('inprogress','${p.name}')">${ip.length} in progress</span>
-          <span class="stat-chip" style="color:#888780" onclick="openDrawer('notstarted','${p.name}')">${ns.length} not started</span>
-        </div>`;
       const active=[...ip,...ns];
+      const activeCount=active.length;
+      const highCount=active.filter(t=>priorityKey(t['Priority'])==='high').length;
+      const capacity=10;
+      const loadPct=(activeCount/capacity)*100;
+      let loadStatus='ok';
+      if(activeCount>=capacity)loadStatus='over';
+      else if(activeCount>=capacity*0.8)loadStatus='near';
+      const loadColor={ok:'#1D9E75',near:'#EF9F27',over:'#E24B4A'}[loadStatus];
+      const loadLabel={ok:'',near:'Near capacity',over:'Overloaded'}[loadStatus];
+      let highColor='var(--text)';
+      if(activeCount>0){
+        const ratio=highCount/activeCount;
+        if(ratio>=0.5&&highCount>0)highColor='#E24B4A';
+        else if(ratio>=0.25&&highCount>0)highColor='#EF9F27';
+      }
+      html+='<div class="person-card"><div class="person-header"><div class="avatar" style="background:'+p.bg+';color:'+p.fg+'">'+p.initials+'</div><div style="flex:1"><div class="person-name">'+p.name+' '+(loadLabel?'<span class="lo-badge" style="background:'+loadColor+'22;color:'+loadColor+'">'+loadLabel+'</span>':'')+'</div><div class="person-sub">'+mine.length+' tasks - '+activeCount+' active - '+dn.length+' done</div></div><div style="text-align:right"><div style="font-size:22px;font-weight:500;color:'+highColor+'">'+highCount+'<span style="font-size:14px;color:var(--text3);font-weight:400">/'+activeCount+'</span></div><div style="font-size:12px;color:var(--text2)">high priority</div></div></div><div class="lo-bar-row"><div class="lo-bar-track" onclick="openDrawer(\'inprogress\',\''+p.name+'\')" style="cursor:pointer"><div class="lo-bar-fill" style="width:'+Math.min(loadPct,100)+'%;background:'+loadColor+'"></div>'+(activeCount>capacity?'<div class="lo-bar-over"></div>':'')+'</div><span class="lo-bar-num" style="color:'+loadColor+'">'+activeCount+'/'+capacity+'</span></div><div class="stat-row"><span class="stat-chip" style="color:#1D9E75" onclick="openDrawer(\'complete\',\''+p.name+'\')">'+dn.length+' complete</span><span class="stat-chip" style="color:#378ADD" onclick="openDrawer(\'inprogress\',\''+p.name+'\')">'+ip.length+' in progress</span><span class="stat-chip" style="color:#888780" onclick="openDrawer(\'notstarted\',\''+p.name+'\')">'+ns.length+' not started</span></div>';
       if(active.length){
         const byClient={};
         active.forEach(t=>{
@@ -689,37 +914,93 @@ function renderLoadView(){
         clientOrder.forEach(c=>{
           const items=byClient[c].sort((a,b)=>dateSortVal(a['Deadline'])-dateSortVal(b['Deadline']));
           const cc=clientColor(c);
-          html+=`<div class="client-group">
-            <div class="client-group-header">
-              <span class="cg-dot" style="background:${cc}"></span>
-              <span style="color:${cc}">${c}</span>
-              <span class="cg-count">${items.length} task${items.length>1?'s':''}</span>
-            </div>`;
+          html+='<div class="client-group"><div class="client-group-header"><span class="cg-dot" style="background:'+cc+'"></span><span style="color:'+cc+'">'+c+'</span><span class="cg-count">'+items.length+' task'+(items.length>1?'s':'')+'</span></div>';
           items.forEach(t=>{
             const sk=statusKey(t['Current Status']);
             const dl=fmtDate(t['Deadline']);
-            html+=`<div class="task-item">
-              <span class="task-dot" style="background:${SC[sk]}"></span>
-              <span style="flex:1">${t['Task']}</span>
-              ${priorityPill(t['Priority'])}
-              ${dl?`<span style="font-size:12px;color:${isOverdue(t['Deadline'],t['Current Status'])?'#E24B4A':'var(--text3)'}">due ${dl}</span>`:'<span style="font-size:12px;color:var(--text3)">no deadline</span>'}
-            </div>`;
+            html+='<div class="task-item"><span class="task-dot" style="background:'+SC[sk]+'"></span><span style="flex:1">'+t['Task']+'</span>'+priorityPill(t['Priority'])+(dl?'<span style="font-size:12px;color:'+(isOverdue(t['Deadline'],t['Current Status'])?'#E24B4A':'var(--text3)')+'">due '+dl+'</span>':'<span style="font-size:12px;color:var(--text3)">no deadline</span>')+'</div>';
           });
-          html+=`</div>`;
+          html+='</div>';
         });
       }
-      html+=`</div>`;
+      html+='</div>';
     });
     if(!renderedAny&&activeTeamFilter==='all'){
-      html+=`<p style="color:var(--text3);font-size:14px;padding:8px 0 14px">No active members yet.</p>`;
+      html+='<p style="color:var(--text3);font-size:14px;padding:8px 0 14px">No active members yet.</p>';
     }
   });
   document.getElementById('view-load').innerHTML=html||'<p style="color:var(--text3);padding:24px;text-align:center">No tasks.</p>';
 }
 
+function renderFindClinicLoadView(){
+  const scope=tasks.filter(t=>t['Team']==='findclinic');
+  const leads=[...new Set(scope.map(t=>getLead(t)).filter(Boolean))];
+
+  if(!leads.length){
+    document.getElementById('view-load').innerHTML='<p style="color:var(--text3);padding:24px;text-align:center">No FindClinic.sg tasks assigned yet.</p>';
+    return;
+  }
+
+  let html='';
+  leads.forEach(leadName=>{
+    const mine=scope.filter(t=>getLead(t)===leadName);
+    const dn=mine.filter(t=>statusKey(t['Current Status'])==='complete');
+    const blockedTasks=mine.filter(t=>isBlocked(t)&&statusKey(t['Current Status'])!=='complete');
+    const ip=mine.filter(t=>statusKey(t['Current Status'])==='inprogress'&&!isBlocked(t));
+    const ns=mine.filter(t=>statusKey(t['Current Status'])==='notstarted'&&!isBlocked(t));
+    const active=[...ip,...ns,...blockedTasks];
+    const activeCount=active.length;
+    const capacity=10;
+    const loadPct=(activeCount/capacity)*100;
+    let loadStatus='ok';
+    if(activeCount>=capacity)loadStatus='over';
+    else if(activeCount>=capacity*0.8)loadStatus='near';
+    const loadColor={ok:'#1D9E75',near:'#EF9F27',over:'#E24B4A'}[loadStatus];
+    const loadLabel={ok:'',near:'Near capacity',over:'Overloaded'}[loadStatus];
+    const av=avatarFor(leadName);
+
+    let breakdown=dn.length+' completed - '+ip.length+' in progress - '+ns.length+' not started';
+    if(blockedTasks.length)breakdown+=' - '+blockedTasks.length+' blocked';
+
+    html+='<div class="person-card"><div class="person-header"><div class="avatar" style="background:'+av.bg+';color:'+av.fg+'">'+av.initials+'</div><div style="flex:1"><div class="person-name">'+leadName+' '+(loadLabel?'<span class="lo-badge" style="background:'+loadColor+'22;color:'+loadColor+'">'+loadLabel+'</span>':'')+'</div><div class="person-sub">'+activeCount+' active task'+(activeCount!==1?'s':'')+'</div></div></div><div class="lo-bar-row"><div class="lo-bar-track" onclick="openFindClinicPersonDrawer(\''+leadName.replace(/'/g,"\\'")+'\')" style="cursor:pointer"><div class="lo-bar-fill" style="width:'+Math.min(loadPct,100)+'%;background:'+loadColor+'"></div>'+(activeCount>capacity?'<div class="lo-bar-over"></div>':'')+'</div><span class="lo-bar-num" style="color:'+loadColor+'">'+activeCount+'/'+capacity+'</span></div><div class="stat-row" style="margin-bottom:6px">'+breakdown+'</div>';
+
+    if(active.length){
+      const byType={};
+      active.forEach(t=>{
+        const wt=getWorkType(t)||'Unspecified';
+        if(!byType[wt])byType[wt]=[];
+        byType[wt].push(t);
+      });
+      const typeOrder=Object.keys(byType).sort((a,b)=>byType[b].length-byType[a].length);
+      typeOrder.forEach(wt=>{
+        const items=byType[wt].sort((a,b)=>dateSortVal(a['Deadline'])-dateSortVal(b['Deadline']));
+        const wtColor=workTypeColor(wt==='Unspecified'?'':wt);
+        html+='<div class="client-group"><div class="client-group-header"><span class="cg-dot" style="background:'+wtColor+'"></span><span style="color:'+wtColor+'">'+wt+'</span><span class="cg-count">'+items.length+' task'+(items.length>1?'s':'')+'</span></div>';
+        items.forEach(t=>{
+          const sk=statusKey(t['Current Status']);
+          const dl=fmtDate(t['Deadline']);
+          const blocked=isBlocked(t);
+          const idx=tasks.indexOf(t);
+          html+='<div class="task-item" onclick="openDrawerSingle('+idx+')"><span class="task-dot" style="background:'+SC[sk]+'"></span><span style="flex:1">'+t['Task']+'</span>'+(blocked?'<span class="pill-inline" style="background:#BA751722;color:#BA7517">Blocked</span>':'')+priorityPill(t['Priority'])+(dl?'<span style="font-size:12px;color:'+(isOverdue(t['Deadline'],t['Current Status'])?'#E24B4A':'var(--text3)')+'">due '+dl+'</span>':'<span style="font-size:12px;color:var(--text3)">no deadline</span>')+'</div>';
+        });
+        html+='</div>';
+      });
+    }
+    html+='</div>';
+  });
+  document.getElementById('view-load').innerHTML=html;
+}
+
+function openFindClinicPersonDrawer(leadName){
+  const list=tasks.filter(t=>t['Team']==='findclinic'&&getLead(t)===leadName&&statusKey(t['Current Status'])!=='complete');
+  list.sort((a,b)=>dateSortVal(a['Deadline'])-dateSortVal(b['Deadline']));
+  showDrawer(leadName+' - active tasks',list);
+}
+
 function setTimelineMode(m){
   activeTimelineMode=m;
   document.querySelectorAll('.tt-btn').forEach(b=>b.classList.toggle('active',b.dataset.mode===m));
+  document.getElementById('showcompleted-row').style.display=(activeTeamFilter==='findclinic'&&m==='gantt')?'':'none';
   renderTimelineView();
 }
 
@@ -729,10 +1010,16 @@ function renderTimelineView(){
 }
 
 function renderGantt(){
-  const scoped=getTeamScopedTasks();
-  const dated=scoped.map(t=>({
-    t,start:parseDate(t['Date Given']),end:parseDate(t['Deadline'])
-  })).filter(x=>x.start);
+  let scoped;
+  if(activeTeamFilter==='findclinic'){
+    scoped=tasks.filter(t=>t['Team']==='findclinic');
+    if(activeWorkTypeFilter!=='all')scoped=scoped.filter(t=>getWorkType(t)===activeWorkTypeFilter);
+    if(!findclinicShowCompleted)scoped=scoped.filter(t=>statusKey(t['Current Status'])!=='complete');
+  }else{
+    scoped=getTeamScopedTasks();
+  }
+
+  const dated=scoped.map(t=>({t,start:parseDate(t['Date Given']),end:parseDate(t['Deadline'])})).filter(x=>x.start);
   if(!dated.length){
     document.getElementById('timeline-content').innerHTML='<p style="color:var(--text3);padding:24px;text-align:center">No dated tasks to display.</p>';
     return;
@@ -760,18 +1047,19 @@ function renderGantt(){
   let dayHeaders='';
   let monthHeaders='';
   months.forEach(m=>{
-    monthHeaders+=`<th colspan="${m.days}" style="text-align:center">${m.label}</th>`;
+    monthHeaders+='<th colspan="'+m.days+'" style="text-align:center">'+m.label+'</th>';
   });
   cur=new Date(minD);
   for(let i=0;i<totalDays;i++){
     const isMonday=cur.getDay()===1;
-    dayHeaders+=`<th class="${isMonday?'gantt-week-sep':''}">${cur.getDate()}</th>`;
+    dayHeaders+='<th class="'+(isMonday?'gantt-week-sep':'')+'">'+cur.getDate()+'</th>';
     cur.setDate(cur.getDate()+1);
   }
 
   const sorted=dated.sort((a,b)=>a.start-b.start);
   let rows='';
-  sorted.forEach(({t,start,end})=>{
+  sorted.forEach(function(item){
+    const t=item.t,start=item.start,end=item.end;
     const sk=statusKey(t['Current Status']);
     const cc=clientColor(t['Client']);
     const startOffset=Math.floor((start-minD)/(1000*60*60*24));
@@ -780,51 +1068,32 @@ function renderGantt(){
     const barLeft=startOffset*dayWidth+2;
     const isMarker=!end;
     const todayOffset=Math.floor((today-minD)/(1000*60*60*24));
-    const todayLeft=todayOffset>=0&&todayOffset<totalDays?`<div class="gantt-today" style="left:${todayOffset*dayWidth+dayWidth/2}px"></div>`:'';
-    rows+=`<tr>
-      <td class="task-cell">
-        <div style="font-weight:500;font-size:14px">${t['Task']}</div>
-        <div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap">
-          <span class="client-pill" style="background:${cc}18;color:${cc};margin:0">${t['Client']||'—'}</span>
-          <span style="font-size:12px;color:var(--text3)">${(t['Main Designer']||'').trim()||'—'}</span>
-        </div>
-      </td>
-      <td colspan="${totalDays}" style="position:relative;padding:0;border-bottom:0.5px solid var(--border);height:52px">
-        <div style="position:absolute;inset:0;display:flex">
-          ${Array.from({length:totalDays}).map((_,i)=>{
-            const d=new Date(minD);d.setDate(d.getDate()+i);
-            const isMonday=d.getDay()===1;
-            return `<div style="width:${dayWidth}px;${isMonday?'border-left:1px solid var(--border2);':''}border-right:0.5px solid var(--border);flex-shrink:0"></div>`;
-          }).join('')}
-        </div>
-        ${todayLeft}
-        ${isMarker?
-          `<div class="gantt-marker" style="left:${barLeft+dayWidth/2-2}px;background:${SC[sk]}" onclick="openDrawerSingle(${tasks.indexOf(t)})" title="${t['Task']}"></div>`
-          :
-          `<div class="gantt-bar" style="left:${barLeft}px;width:${barWidth}px;background:${SC[sk]}" onclick="openDrawerSingle(${tasks.indexOf(t)})" title="${t['Task']}">${barWidth>60?t['Task']:''}</div>`
-        }
-      </td>
-    </tr>`;
+    const todayLeft=todayOffset>=0&&todayOffset<totalDays?'<div class="gantt-today" style="left:'+(todayOffset*dayWidth+dayWidth/2)+'px"></div>':'';
+    const barColor=activeTeamFilter==='findclinic'&&isBlocked(t)?'#BA7517':SC[sk];
+    let dayDivs='';
+    for(let i=0;i<totalDays;i++){
+      const d=new Date(minD);d.setDate(d.getDate()+i);
+      const isMonday=d.getDay()===1;
+      dayDivs+='<div style="width:'+dayWidth+'px;'+(isMonday?'border-left:1px solid var(--border2);':'')+'border-right:0.5px solid var(--border);flex-shrink:0"></div>';
+    }
+    const idx=tasks.indexOf(t);
+    rows+='<tr><td class="task-cell"><div style="font-weight:500;font-size:14px">'+t['Task']+'</div><div style="display:flex;gap:4px;align-items:center;margin-top:3px;flex-wrap:wrap"><span class="client-pill" style="background:'+cc+'18;color:'+cc+';margin:0">'+(t['Client']||'-')+'</span><span style="font-size:12px;color:var(--text3)">'+((t['Main Designer']||'').trim()||'-')+'</span></div></td><td colspan="'+totalDays+'" style="position:relative;padding:0;border-bottom:0.5px solid var(--border);height:52px"><div style="position:absolute;inset:0;display:flex">'+dayDivs+'</div>'+todayLeft+(isMarker?'<div class="gantt-marker" style="left:'+(barLeft+dayWidth/2-2)+'px;background:'+barColor+'" onclick="openDrawerSingle('+idx+')" title="'+t['Task']+'"></div>':'<div class="gantt-bar" style="left:'+barLeft+'px;width:'+barWidth+'px;background:'+barColor+'" onclick="openDrawerSingle('+idx+')" title="'+t['Task']+'">'+(barWidth>60?t['Task']:'')+'</div>')+'</td></tr>';
   });
 
-  const html=`<div class="gantt-scroll"><table class="gantt-table">
-    <thead>
-      <tr class="gantt-month-row"><th class="task-col">Task</th>${monthHeaders}</tr>
-      <tr><th class="task-col"></th>${dayHeaders}</tr>
-    </thead>
-    <tbody>${rows}</tbody>
-  </table></div>
-  <div style="margin-top:10px;font-size:13px;color:var(--text3)">Bar = Date Given → Deadline. Circle = single date (no deadline). Red line = today.</div>`;
+  const html='<div class="gantt-scroll"><table class="gantt-table"><thead><tr class="gantt-month-row"><th class="task-col">Task</th>'+monthHeaders+'</tr><tr><th class="task-col"></th>'+dayHeaders+'</tr></thead><tbody>'+rows+'</tbody></table></div><div style="margin-top:10px;font-size:13px;color:var(--text3)">Bar = Date Given to Deadline. Circle = single date (no deadline). Red line = today.'+(activeTeamFilter==='findclinic'?' Amber bars = blocked/waiting.':'')+'</div>';
   document.getElementById('timeline-content').innerHTML=html;
 }
 
 function renderCalendar(){
-  const scoped=getTeamScopedTasks();
+  let scoped;
+  if(activeTeamFilter==='findclinic'){
+    scoped=tasks.filter(t=>t['Team']==='findclinic');
+    if(activeWorkTypeFilter!=='all')scoped=scoped.filter(t=>getWorkType(t)===activeWorkTypeFilter);
+  }else{
+    scoped=getTeamScopedTasks();
+  }
   const today=new Date();today.setHours(0,0,0,0);
-  const months=[
-    new Date(today.getFullYear(),today.getMonth(),1),
-    new Date(today.getFullYear(),today.getMonth()+1,1)
-  ];
+  const months=[new Date(today.getFullYear(),today.getMonth(),1),new Date(today.getFullYear(),today.getMonth()+1,1)];
   let html='';
   months.forEach(monthStart=>{
     const monthEnd=new Date(monthStart.getFullYear(),monthStart.getMonth()+1,0);
@@ -841,44 +1110,43 @@ function renderCalendar(){
       byDay[k].push(t);
     });
     const maxLoad=Math.max(1,...Object.values(byDay).map(arr=>arr.length));
-    html+=`<div class="cal-month-title">${MONTHS[monthStart.getMonth()]} ${monthStart.getFullYear()} <span style="font-weight:400;color:var(--text3);font-size:14px;margin-left:8px">${monthTasks.length} task${monthTasks.length!==1?'s':''} due</span></div>
-    <div class="cal-grid">
-      ${['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>`<div class="cal-header">${d}</div>`).join('')}`;
-    for(let i=0;i<firstWeekday;i++)html+=`<div class="cal-cell empty"></div>`;
+    html+='<div class="cal-month-title">'+MONTHS[monthStart.getMonth()]+' '+monthStart.getFullYear()+' <span style="font-weight:400;color:var(--text3);font-size:14px;margin-left:8px">'+monthTasks.length+' task'+(monthTasks.length!==1?'s':'')+' due</span></div><div class="cal-grid">'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(d=>'<div class="cal-header">'+d+'</div>').join('');
+    for(let i=0;i<firstWeekday;i++)html+='<div class="cal-cell empty"></div>';
     for(let day=1;day<=monthEnd.getDate();day++){
       const cellDate=new Date(monthStart.getFullYear(),monthStart.getMonth(),day);
       const isToday=cellDate.getTime()===today.getTime();
       const dayTasks=byDay[day]||[];
       const load=dayTasks.length;
       const heat=load/maxLoad;
-      const heatColor=load?`rgba(226,75,74,${0.08+heat*0.18})`:'transparent';
+      const heatColor=load?'rgba(226,75,74,'+(0.08+heat*0.18)+')':'transparent';
       const counts={complete:0,inprogress:0,notstarted:0};
       dayTasks.forEach(t=>counts[statusKey(t['Current Status'])]++);
       let dots='';
-      if(counts.notstarted)dots+=`<span class="cal-dot" style="background:#888780" title="${counts.notstarted} not started"></span>`;
-      if(counts.inprogress)dots+=`<span class="cal-dot" style="background:#378ADD" title="${counts.inprogress} in progress"></span>`;
-      if(counts.complete)dots+=`<span class="cal-dot" style="background:#1D9E75" title="${counts.complete} complete"></span>`;
-      html+=`<div class="cal-cell ${isToday?'today':''} ${load?'has-load':''}" onclick="openCalendarDay(${monthStart.getFullYear()},${monthStart.getMonth()},${day})">
-        <div class="cal-heat" style="background:${heatColor}"></div>
-        <div class="cal-day" style="position:relative;z-index:1">${day}</div>
-        <div class="cal-count" style="position:relative;z-index:1">${load?`<span style="font-size:13px;font-weight:500;margin-right:4px">${load}</span>${dots}`:''}</div>
-      </div>`;
+      if(counts.notstarted)dots+='<span class="cal-dot" style="background:#888780" title="'+counts.notstarted+' not started"></span>';
+      if(counts.inprogress)dots+='<span class="cal-dot" style="background:#378ADD" title="'+counts.inprogress+' in progress"></span>';
+      if(counts.complete)dots+='<span class="cal-dot" style="background:#1D9E75" title="'+counts.complete+' complete"></span>';
+      html+='<div class="cal-cell '+(isToday?'today':'')+' '+(load?'has-load':'')+'" onclick="openCalendarDay('+monthStart.getFullYear()+','+monthStart.getMonth()+','+day+')"><div class="cal-heat" style="background:'+heatColor+'"></div><div class="cal-day" style="position:relative;z-index:1">'+day+'</div><div class="cal-count" style="position:relative;z-index:1">'+(load?'<span style="font-size:13px;font-weight:500;margin-right:4px">'+load+'</span>'+dots:'')+'</div></div>';
     }
-    html+=`</div>`;
+    html+='</div>';
   });
-  html+=`<div style="margin-top:6px;font-size:13px;color:var(--text3)">Cells shaded red by workload. Click any day to see tasks due then.</div>`;
+  html+='<div style="margin-top:6px;font-size:13px;color:var(--text3)">Cells shaded red by workload. Click any day to see tasks due then.</div>';
   document.getElementById('timeline-content').innerHTML=html;
 }
 
 function openCalendarDay(y,m,d){
-  const scoped=getTeamScopedTasks();
+  let scoped;
+  if(activeTeamFilter==='findclinic'){
+    scoped=tasks.filter(t=>t['Team']==='findclinic');
+    if(activeWorkTypeFilter!=='all')scoped=scoped.filter(t=>getWorkType(t)===activeWorkTypeFilter);
+  }else{
+    scoped=getTeamScopedTasks();
+  }
   const target=new Date(y,m,d);
   const list=scoped.filter(t=>{
     const dd=parseDate(t['Deadline']);
     return dd&&dd.getTime()===target.getTime();
   });
-  const title=`Due ${d} ${MONTHS[m]} ${y}`;
-  showDrawer(title,list);
+  showDrawer('Due '+d+' '+MONTHS[m]+' '+y,list);
 }
 
 function openDrawerSingle(idx){
@@ -893,15 +1161,15 @@ function openDrawer(filter,designer){
   if(designer)list=list.filter(t=>(t['Main Designer']||'').trim()===designer);
   list.sort((a,b)=>dateSortVal(a['Deadline'])-dateSortVal(b['Deadline']));
   const filterLabel=filter==='all'?'All tasks':statusLabel(filter);
-  const title=designer?`${designer} — ${filterLabel}`:filterLabel;
+  const title=designer?(designer+' - '+filterLabel):filterLabel;
   showDrawer(title,list);
 }
 
 function showDrawer(title,list){
   document.getElementById('drawer-title').textContent=title;
-  let body=`<div class="drawer-count">${list.length} task${list.length!==1?'s':''}</div>`;
+  let body='<div class="drawer-count">'+list.length+' task'+(list.length!==1?'s':'')+'</div>';
   if(!list.length){
-    body+=`<div class="drawer-empty">No tasks here.</div>`;
+    body+='<div class="drawer-empty">No tasks here.</div>';
   }else{
     list.forEach(t=>{
       const sk=statusKey(t['Current Status']);
@@ -910,22 +1178,15 @@ function showDrawer(title,list){
       const remarks=(t['Remarks']||'').trim();
       const dl=fmtDate(t['Deadline']);
       const given=fmtDate(t['Date Given']);
-      const teamKey=getTeam(t['Main Designer']);
-      const teamMeta=teamKey?TEAMS[teamKey]:null;
-      body+=`<div class="drawer-task" style="border-left-color:${SC[sk]}">
-        <div class="drawer-task-name">${t['Task']}</div>
-        <div class="drawer-meta">
-          <span class="drawer-pill" style="background:${cc}18;color:${cc}">${t['Client']||'—'}</span>
-          <span class="drawer-pill" style="background:${SC[sk]}18;color:${SC[sk]}">${statusLabel(sk)}</span>
-          ${teamMeta?`<span class="drawer-pill" style="background:${teamMeta.color}18;color:${teamMeta.color}">${teamMeta.name}</span>`:''}
-          ${priorityPill(t['Priority'])}
-          ${t['Main Designer']?`<span class="drawer-field">Lead: <strong>${t['Main Designer']}</strong></span>`:''}
-          ${support?`<span class="drawer-field">+ ${support}</span>`:''}
-          ${given?`<span class="drawer-field">Started: ${given}</span>`:''}
-          ${dl?`<span class="drawer-field">Due: <strong>${dl}</strong></span>`:''}
-        </div>
-        ${remarks?`<div class="drawer-remarks">${remarks}</div>`:''}
-      </div>`;
+      const teamKey=t['Team']||getTeam(t['Main Designer']);
+      let teamLabel='',teamColor='';
+      if(teamKey==='design'){teamLabel='Design';teamColor=TEAMS.design.color}
+      else if(teamKey==='content'){teamLabel='Content';teamColor=TEAMS.content.color}
+      else if(teamKey==='findclinic'){teamLabel='FindClinic.sg';teamColor='#854F0B'}
+      const wt=getWorkType(t);
+      const blockerText=(t['Blocker']||'').toString().trim();
+      const blocked=isBlocked(t);
+      body+='<div class="drawer-task" style="border-left-color:'+SC[sk]+'"><div class="drawer-task-name">'+t['Task']+'</div><div class="drawer-meta"><span class="drawer-pill" style="background:'+cc+'18;color:'+cc+'">'+(t['Client']||'-')+'</span><span class="drawer-pill" style="background:'+SC[sk]+'18;color:'+SC[sk]+'">'+statusLabel(sk)+'</span>'+(blocked?'<span class="drawer-pill" style="background:#BA751722;color:#BA7517">Blocked</span>':'')+(teamLabel?'<span class="drawer-pill" style="background:'+teamColor+'18;color:'+teamColor+'">'+teamLabel+'</span>':'')+(wt?'<span class="drawer-pill" style="background:'+workTypeColor(wt)+'18;color:'+workTypeColor(wt)+'">'+wt+'</span>':'')+priorityPill(t['Priority'])+(t['Main Designer']?'<span class="drawer-field">Lead: <strong>'+t['Main Designer']+'</strong></span>':'')+(support?'<span class="drawer-field">+ '+support+'</span>':'')+(given?'<span class="drawer-field">Started: '+given+'</span>':'')+(dl?'<span class="drawer-field">Due: <strong>'+dl+'</strong></span>':'')+'</div>'+(blockerText?'<div class="drawer-remarks" style="color:#BA7517;font-style:normal">Blocker: '+blockerText+'</div>':'')+(remarks?'<div class="drawer-remarks">'+remarks+'</div>':'')+'</div>';
     });
   }
   document.getElementById('drawer-body').innerHTML=body;
@@ -943,6 +1204,10 @@ function switchView(id){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.querySelectorAll('.top-nav-btn').forEach(t=>t.classList.toggle('active',t.dataset.view===id));
   document.getElementById('view-'+id).classList.add('active');
+  if(id==='timeline'){
+    document.getElementById('findclinic-timeline-worktype-row').style.display=activeTeamFilter==='findclinic'?'':'none';
+    document.getElementById('showcompleted-row').style.display=(activeTeamFilter==='findclinic'&&activeTimelineMode==='gantt')?'':'none';
+  }
 }
 
 if(sessionStorage.getItem('auth')==='1'){
