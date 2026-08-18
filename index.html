@@ -480,16 +480,25 @@ function parseDate(val){
   if(val instanceof Date)return val;
   const s=val.toString().trim();
   if(!s)return null;
-  let d=new Date(s);
-  if(!isNaN(d))return d;
+
+  // Try "DD Mon" or "DD Month YYYY" first. Doing this before new Date(s)
+  // matters: browsers silently parse year-less strings like "30 Jul" as
+  // the year 2001 instead of the current year, which is wrong here.
   const m=s.match(/^(\d{1,2})\s+([A-Za-z]{3,9})(?:\s+(\d{4}))?$/);
   if(m){
     const day=parseInt(m[1],10);
     const mi=MONTHS.findIndex(x=>x.toLowerCase()===m[2].slice(0,3).toLowerCase());
     if(mi>=0){
-      const year=m[3]?parseInt(m[3],10):2026;
+      const year=m[3]?parseInt(m[3],10):new Date().getFullYear();
       return new Date(year,mi,day);
     }
+  }
+
+  // Only trust the native parser when the string actually contains a
+  // 4-digit year, so we never fall into the year-2001 default.
+  if(/\d{4}/.test(s)){
+    const d=new Date(s);
+    if(!isNaN(d))return d;
   }
   return null;
 }
